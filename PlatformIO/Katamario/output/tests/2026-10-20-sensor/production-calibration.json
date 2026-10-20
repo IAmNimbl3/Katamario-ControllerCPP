@@ -1,0 +1,36 @@
+{
+  "states": {
+    "calibrating": 999
+  },
+  "notes": [
+    "# BT_READY: Kyuboru SPP",
+    "# Kyuboru v1. Comandos: d demo, c reconectar, a confirmar alineacion, h ayuda",
+    "# CSV: K2,millis,status,right,forward,qw,qx,qy,qz",
+    "# AWAITING_ALIGNMENT: esperando confirmacion o BYPASS_ALIGNMENT",
+    "# CALIBRATING: 3 s quieta, ejes del sensor X derecha, Y adelante, Z arriba",
+    "# CALRAW_ON: ax_g,ay_g,az_g,gx_rad_s,gy_rad_s,gz_rad_s,dt_us,mask,good,best,n,reject_gyro,reject_x,reject_y,reject_z,reject_gap",
+    "# AWAITING_ALIGNMENT: esperando confirmacion o BYPASS_ALIGNMENT",
+    "# CALIBRATING: 3 s quieta, ejes del sensor X derecha, Y adelante, Z arriba",
+    "# CALRAW_OFF"
+  ],
+  "diagnostic_rows": 39,
+  "sampled_accel_g_mean": [
+    -0.3288449487179487,
+    -0.0006635641025641026,
+    1.0044196153846154
+  ],
+  "sampled_gyro_rad_s_mean": [
+    0.001336923076923077,
+    -0.043142,
+    0.01219751282051282
+  ],
+  "best_consecutive_good": 0.0,
+  "observed_samples": 1949,
+  "rejections": {
+    "gyro": 4,
+    "x": 1949,
+    "y": 0,
+    "z": 0,
+    "sample_gap": 0
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "notes": [
+    "# PROBE address=0x68 whoami=0x34 connection=1",
+    "# CONFIG gyro=3 accel=0 dlpf=3 rate=9 sleep=0",
+    "# RAW,us,ax_raw,ay_raw,az_raw,gx_raw,gy_raw,gz_raw,ax_g,ay_g,az_g,gx_dps,gy_dps,gz_dps,gyro_rad_s,flags,good,best"
+  ],
+  "samples": 119,
+  "statistics": {
+    "gap_us": {
+      "min": 10000.0,
+      "mean": 10000.0,
+      "max": 10000.0
+    },
+    "ax_raw": {
+      "min": 0.0,
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "ay_raw": {
+      "min": 2.0,
+      "mean": 2.0,
+      "max": 2.0
+    },
+    "az_raw": {
+      "min": 4.0,
+      "mean": 4.0,
+      "max": 4.0
+    },
+    "gx_raw": {
+      "min": 8.0,
+      "mean": 8.0,
+      "max": 8.0
+    },
+    "gy_raw": {
+      "min": 10.0,
+      "mean": 10.0,
+      "max": 10.0
+    },
+    "gz_raw": {
+      "min": 12.0,
+      "mean": 12.0,
+      "max": 12.0
+    },
+    "ax_g": {
+      "min": 0.0,
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "ay_g": {
+      "min": 0.000122,
+      "mean": 0.000122,
+      "max": 0.000122
+    },
+    "az_g": {
+      "min": 0.000244,
+      "mean": 0.000244,
+      "max": 0.000244
+    },
+    "gx_dps": {
+      "min": 0.4878,
+      "mean": 0.4878,
+      "max": 0.4878
+    },
+    "gy_dps": {
+      "min": 0.60976,
+      "mean": 0.60976,
+      "max": 0.60976
+    },
+    "gz_dps": {
+      "min": 0.73171,
+      "mean": 0.73171,
+      "max": 0.73171
+    },
+    "gyro_rad_s": {
+      "min": 0.018677,
+      "mean": 0.018677,
+      "max": 0.018677
+    },
+    "flags": {
+      "min": 8.0,
+      "mean": 8.0,
+      "max": 8.0
+    },
+    "good": {
+      "min": 0.0,
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "best": {
+      "min": 0.0,
+      "mean": 0.0,
+      "max": 0.0
+    }
+  },
+  "blocking_counts": {
+    "1": 0,
+    "2": 0,
+    "4": 0,
+    "8": 119,
+    "16": 0,
+    "32": 0,
+    "64": 0
+  }
+}

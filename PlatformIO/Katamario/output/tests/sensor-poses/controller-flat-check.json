@@ -1,0 +1,12 @@
+{
+  "counts": {
+    "calibrating": 749
+  },
+  "messages": [
+    "Lb\ufffdr\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdb\ufffdr\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdRK2,842610,calibrating,0.0000,0.0000,1.000000,0.000000,0.000000,0.000000"
+  ],
+  "last_samples": {
+    "calibrating": "K2,857590,calibrating,0.0000,0.0000,1.000000,0.000000,0.000000,0.000000"
+  },
+  "ready_samples": 0
+}

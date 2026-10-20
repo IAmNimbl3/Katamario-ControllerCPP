@@ -1,0 +1,23 @@
+{
+  "x": {
+    "positive_g": 1.0264632625,
+    "negative_g": -0.971185275,
+    "offset_g": 0.027638993750000063,
+    "half_span_g": 0.99882426875
+  },
+  "y": {
+    "positive_g": 0.99821165,
+    "negative_g": -1.016522225,
+    "offset_g": -0.009155287499999942,
+    "half_span_g": 1.0073669375
+  },
+  "z": {
+    "positive_g": 1.068020675,
+    "negative_g": -0.9590805375,
+    "offset_g": 0.054470068750000045,
+    "half_span_g": 1.01355060625
+  },
+  "total_samples": 480,
+  "i2c_errors": 0,
+  "note": "Approximate estimates from manually supported poses, not precision calibration. z_down showed higher motion. No correction applied."
+}

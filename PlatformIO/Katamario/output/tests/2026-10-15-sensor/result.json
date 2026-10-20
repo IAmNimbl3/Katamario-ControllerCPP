@@ -1,0 +1,12 @@
+{
+  "messages": [
+    "# WAITING: sensor ausente"
+  ],
+  "counts": {
+    "waiting": 1250
+  },
+  "last_samples": {
+    "waiting": "K2,36306,waiting,0.0000,0.0000,1.000000,0.000000,0.000000,0.000000"
+  },
+  "ready_samples": 0
+}

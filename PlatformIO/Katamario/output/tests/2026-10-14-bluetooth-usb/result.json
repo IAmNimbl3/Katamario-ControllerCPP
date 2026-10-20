@@ -1,0 +1,198 @@
+{
+  "checks": {
+    "waiting_without_sensor": true,
+    "cycle_1_phase_0": true,
+    "cycle_1_phase_1": true,
+    "cycle_1_phase_2": true,
+    "cycle_1_phase_3": true,
+    "cycle_1_phase_4": true,
+    "cycle_1_phase_5": true,
+    "cycle_1_phase_6": true,
+    "cycle_1_phase_7": true,
+    "cycle_2_phase_0": true,
+    "cycle_2_phase_1": true,
+    "cycle_2_phase_2": true,
+    "cycle_2_phase_3": true,
+    "cycle_2_phase_4": true,
+    "cycle_2_phase_5": true,
+    "cycle_2_phase_6": true,
+    "cycle_2_phase_7": true,
+    "finite_values": true,
+    "unit_quaternions": true,
+    "monotonic_timestamps": true,
+    "stream_cadence": true,
+    "bounded_movement": true,
+    "restart_at_rest": true,
+    "return_to_waiting": true
+  },
+  "passed": true,
+  "demo_packets": 1650,
+  "cadence_ms": {
+    "min": 20,
+    "median": 20,
+    "max": 20
+  },
+  "max_quaternion_norm_error": 7.451372777689258e-07,
+  "phases": [
+    {
+      "cycle": 1,
+      "phase": 0,
+      "samples": 85,
+      "expected": [
+        0,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 1,
+      "samples": 85,
+      "expected": [
+        0,
+        0.2463
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 2,
+      "samples": 85,
+      "expected": [
+        0,
+        0.7935
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 3,
+      "samples": 85,
+      "expected": [
+        0,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 4,
+      "samples": 85,
+      "expected": [
+        0.4716,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 5,
+      "samples": 85,
+      "expected": [
+        0,
+        -0.4716
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 6,
+      "samples": 85,
+      "expected": [
+        -0.4716,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 1,
+      "phase": 7,
+      "samples": 85,
+      "expected": [
+        0,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 0,
+      "samples": 85,
+      "expected": [
+        0,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 1,
+      "samples": 85,
+      "expected": [
+        0,
+        0.2463
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 2,
+      "samples": 85,
+      "expected": [
+        0,
+        0.7935
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 3,
+      "samples": 85,
+      "expected": [
+        0,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 4,
+      "samples": 85,
+      "expected": [
+        0.4716,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 5,
+      "samples": 85,
+      "expected": [
+        0,
+        -0.4716
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 6,
+      "samples": 85,
+      "expected": [
+        -0.4716,
+        0
+      ],
+      "max_error": 0.0
+    },
+    {
+      "cycle": 2,
+      "phase": 7,
+      "samples": 85,
+      "expected": [
+        0,
+        0
+      ],
+      "max_error": 0.0
+    }
+  ]
+}
