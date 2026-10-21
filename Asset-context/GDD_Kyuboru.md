@@ -3,11 +3,11 @@
 ## Documento de diseño del juego
 
 **Versión:** 0.1 · **Fecha:** 21 de octubre de 2026  
-**Entrega:** vertical slice para cátedra · **Equipo:** dos integrantes estables y un tercero ocasional · **Horizonte:** aproximadamente seis semanas.
+**Alcance:** Vertical Slice.
 
 Este GDD establece la experiencia, las reglas y el alcance acordados para Kyuboru. Sirve como referencia compartida para programación, diseño de niveles, arte y pruebas. Describe el juego objetivo; no certifica que todas sus mecánicas estén implementadas.
 
-Las reglas expresadas como acuerdos constituyen la base de esta versión. Los valores de balance y las propuestas identificadas como provisionales requieren pruebas. La construcción concreta del nivel corresponde al integrante responsable de niveles; este documento define necesidades y flujo conceptual, no un mapa obligatorio.
+Los valores de balance y las propuestas identificadas como provisionales requieren pruebas. El diseño de niveles se describe mediante necesidades y flujo conceptual, no como un mapa obligatorio.
 
 ## Índice
 
@@ -23,9 +23,9 @@ Las reglas expresadas como acuerdos constituyen la base de esta versión. Los va
 10. [Preparación pausa y reanudación](#10-preparación-pausa-y-reanudación)
 11. [Diseño conceptual de niveles](#11-diseño-conceptual-de-niveles)
 12. [Identidad audiovisual](#12-identidad-audiovisual)
-13. [Alcance y estado de implementación](#13-alcance-y-estado-de-implementación)
+13. [Alcance de la vertical slice](#13-alcance-de-la-vertical-slice)
 14. [Parámetros y decisiones abiertas](#14-parámetros-y-decisiones-abiertas)
-15. [Plan de producción y validación](#15-plan-de-producción-y-validación)
+15. [Validación del diseño](#15-validación-del-diseño)
 
 ## 1 Visión y pilares
 
@@ -49,17 +49,23 @@ El jugador pasa de familiarizarse con la pelota a ejecutar recorridos y saltos c
 - **Dominar el control permite superar desafíos.** El tamaño abre posibilidades, pero no reemplaza la ejecución de ganchos y trayectorias.
 - **Consecuencias comprensibles y recuperación amable.** Los errores cuestan tiempo o recorrido sin destruir lo recolectado.
 
-### Lentes aplicados al diseño
-
-El **Lente del Juguete** exige que rodar y balancearse resulten satisfactorios antes de sumar recompensas. Los lentes de **Acción y Habilidad** vinculan el aprendizaje físico con desafíos legibles. El **Lente del Espacio** usa crecimiento y trayectoria para cambiar los accesos. El **Lente de Feedback** exige comunicar selección, aterrizaje y penalización antes de culpar al jugador por fallar. El **Lente de Mitigación de Riesgo** prioriza probar el gancho con el dispositivo real.
-
 ## 2 Jugador y estructura de sesión
 
-Se busca una experiencia individual para cátedra, accesible a quien todavía no conoce el controlador. Las sesiones duran aproximadamente **10 a 20 minutos según el nivel**. La duración objetivo de sesión y el límite exacto del reloj son parámetros relacionados, pero no necesariamente iguales.
+Se busca una experiencia individual, accesible a quien todavía no conoce el controlador. Las sesiones duran aproximadamente **10 a 20 minutos según el nivel**. La duración objetivo de sesión y el límite exacto del reloj son parámetros relacionados, pero no necesariamente iguales.
 
 La dificultad pertenece al nivel. No existe un selector global de dificultad. El perfil demográfico específico del público aún no está cerrado; las categorías internas no constituyen por sí mismas una clasificación por edades.
 
 ### Ciclos de juego
+
+```mermaid
+flowchart LR
+  A[Elegir una ruta] --> B[Rodar y recoger]
+  B --> C[Crecer y abrir accesos]
+  C --> D[Superar el desafío]
+  D --> E[Meta o puntaje]
+```
+
+El recorrido se repite con nuevas oportunidades hasta cerrar el objetivo de la sesión.
 
 - **Segundos:** observar una situación, rodar o interactuar, recibir feedback y ajustar el movimiento.
 - **Minutos:** recoger, crecer, acceder a otro sector y superar un conjunto de obstáculos.
@@ -77,7 +83,7 @@ La pelota física gira dentro de una caja fija. El sensor, la ESP32 y el circuit
 | Colgado | Impulsar o frenar el balanceo | Soltarse |
 | Menús y resultados | Cambiar la opción seleccionada | Confirmar |
 
-Retorcer significa una rotación sobre el eje vertical de referencia, como una perilla. No es una aceleración vertical ni un desplazamiento de la pelota. El firmware contempla un placeholder para esa señal; el reconocimiento del gesto y su integración deben desarrollarse y validarse.
+Retorcer significa una rotación sobre el eje vertical de referencia, como una perilla. No es una aceleración vertical ni un desplazamiento de la pelota.
 
 ### Reglas de lectura
 
@@ -97,7 +103,7 @@ Aceleración, frenado y velocidad máxima según tamaño serán parametrizables.
 
 Solo se absorben objetos habilitados por el tamaño actual. Cada objeto aporta crecimiento en función de su tamaño o volumen. Su rareza no aumenta ese aporte. Los objetos recogidos permanecen asociados visualmente a la pelota.
 
-Crecer permite absorber nuevas franjas de objetos y superar barreras de tamaño. Las condiciones exactas de absorción y la curva de crecimiento deben ser legibles y configurables. El prototipo utiliza volumen equivalente y una restricción adicional de eje máximo; sus constantes actuales son una base técnica, no balance definitivo.
+Crecer permite absorber nuevas franjas de objetos y superar barreras de tamaño. Las condiciones exactas de absorción y la curva de crecimiento deben ser legibles y configurables.
 
 ### Colisiones
 
@@ -106,6 +112,14 @@ Los contactos normales bloquean o desvían. Los choques fuertes producen un rebo
 ## 5 Puntuación y rareza
 
 ### Dos sistemas independientes
+
+```mermaid
+flowchart LR
+  A[Objeto absorbido] --> B[Tamaño o volumen]
+  A --> C[Franja y rareza]
+  B --> D[Crecimiento y accesos]
+  C --> E[Puntaje y récord]
+```
 
 **Crecimiento y puntuación son sistemas independientes.** El crecimiento depende del tamaño o volumen absorbido. El puntaje depende de una franja de tamaño y de la rareza del objeto.
 
@@ -124,6 +138,15 @@ Los multiplicadores, el número de rarezas y los valores base están pendientes 
 El gancho no concede puntos por repetir balanceos: permite acceder a oportunidades de recolección. Los combos y bonos de recorrido no forman parte del alcance acordado.
 
 ## 6 Ganchos y balanceo
+
+```mermaid
+flowchart LR
+  A[Gancho cercano señalado] --> B[Retorcer para enganchar]
+  B --> C[Rodar para balancear]
+  C --> D[Anticipar el aterrizaje]
+  D --> E[Retorcer para soltar]
+  E --> F[Volar y aterrizar]
+```
 
 ### Selección y enganche
 
@@ -164,6 +187,15 @@ La fuerza es configurable por instancia. Después del impulso se conserva capaci
 Los niveles pueden incorporar obstáculos que hagan perder tiempo al bloquear, desviar o exigir una ejecución. Las barreras temporizadas son una posibilidad de diseño, no una familia obligatoria ya aprobada para todos los niveles. El temporizador general proporciona presión; no todos los errores descuentan segundos directamente.
 
 ### Peligros y recuperación
+
+```mermaid
+flowchart LR
+  A[Caída en peligro] --> B[Penalización única]
+  B --> C[Queda tiempo]
+  B --> D[Tiempo agotado]
+  C --> E[Reaparecer y continuar]
+  D --> F[Fin de partida]
+```
 
 Una caída en lava u otro peligro definido por el nivel desencadena esta secuencia:
 
@@ -240,15 +272,21 @@ Los resultados muestran victoria o fracaso, puntaje y la información temporal p
 
 El jugador coloca la marca física de la pelota en la referencia conocida, con el sensor horizontal y componentes hacia arriba, y permanece quieto. La interfaz indica el progreso de preparación. La marca también comunica el frente: la gravedad por sí sola no fija el rumbo hacia la pantalla.
 
-Cuando el control está listo se realiza una cuenta regresiva breve y comienza la simulación con su temporizador. La calibración actual del firmware exige unos tres segundos de muestras aceptadas; la experiencia final debe comunicar claramente si está esperando quietud o posición.
+Cuando el control está listo se realiza una cuenta regresiva breve y comienza la simulación con su temporizador. La preparación debe comunicar claramente si está esperando quietud o posición.
 
 ### Interrupción del dispositivo
+
+```mermaid
+flowchart LR
+  A[Conexión perdida o recalibración] --> B[Pausar y conservar estado]
+  B --> C[Recuperar referencia]
+  C --> D[Cuenta regresiva]
+  D --> E[Reanudar sin penalización]
+```
 
 Perder la conexión o requerir recalibración pausa **toda la simulación**, incluido el balanceo y el temporizador. Se conserva el estado para reanudar. No se aplica una penalización por un problema del dispositivo.
 
 Tras recuperar la referencia se realiza una cuenta regresiva breve antes de devolver el control. La pausa debe conservar velocidades, vínculo del gancho, estados de obstáculos y progreso de forma coherente. Reaparecer tras tocar lava no obliga por sí mismo a recalibrar.
-
-La confirmación de alineación desde Unity está pendiente de integrar; el firmware de banco utiliza un bypass. No debe confundirse el bypass de pruebas con la preparación final del jugador.
 
 ## 11 Diseño conceptual de niveles
 
@@ -282,11 +320,11 @@ Cada nivel debe registrar: categoría interna, modalidad de objetivo, duración 
 
 Kyuboru mantiene como antecedente conceptual el humor y la identidad argentina, junto con los bocetos del Pibe Rodante. Estos antecedentes no equivalen a un personaje final aprobado ni obligan a introducir narrativa adicional para esta entrega.
 
-La ciudad del repositorio ofrece objetos cotidianos, mobiliario, vehículos y edificios. Sirve como base de producción para comunicar cambios de escala. La dirección visual final debe mantener legibilidad de objetos absorbibles, interacciones y peligros por encima de la cantidad de decoración.
+El entorno urbano utiliza objetos cotidianos, mobiliario, vehículos y edificios para comunicar cambios de escala. La dirección visual debe mantener legibilidad de objetos absorbibles, interacciones y peligros por encima de la cantidad de decoración.
 
 El sonido comunica rodado, recolección, crecimiento, enganche, oportunidad favorable, salida y penalización. Las señales críticas tienen respaldo visual. No se define una banda sonora nueva ni una historia completa en esta versión.
 
-## 13 Alcance y estado de implementación
+## 13 Alcance de la vertical slice
 
 ### Compromiso de la vertical slice
 
@@ -302,21 +340,6 @@ Se prioriza un recorrido terminado y una modalidad principal, con reglas configu
 - Niveles temáticos adicionales, multijugador y clasificaciones online.
 - Combos, poderes por categoría y acumulación de funcionalidades sin validar el núcleo.
 - Control manual de cámara y desprendimiento por golpes.
-
-### Evidencia del repositorio
-
-Referencia inspeccionada: `MauroUr/Katamary-alternativo`, commit `70e349885c88950c7d728347ab4d9fd99edc1006`. La revisión fue de código y configuración, no un playtest de Unity.
-
-| Base encontrada | Implicación para este GDD |
-|---|---|
-| Absorción, crecimiento, cámara, HUD y desprendimiento por choques | Reutilizar núcleo y desactivar el desprendimiento para esta entrega |
-| `KatamariRun` con objetivos Diameter, Category y Free | Adaptar a meta espacial, puntaje y reglas temporales acordadas; no asumir equivalencia automática |
-| Escenas MainMenu, Ciudad y Prototipo | Base existente; no constituye compromiso de varios niveles terminados |
-| Ciudad configurada con diámetro objetivo de 0,5 m y límite de 300 s | Configuración previa al GDD; revisar según objetivo y duración de cada nivel |
-| `RotoscopeKatamariInput` recibe ticks y simula con mouse | Requiere integración explícita con las salidas normalizadas y estados del firmware K2 |
-| Rampas, terrazas y elementos urbanos | Material para recorrido y crecimiento; no equivalen a gancho o aceleradores terminados |
-
-Los ganchos, la predicción y asistencia, el lenguaje contextual y las demás reglas nuevas requieren verificación o implementación. Este GDD no modifica el código del juego.
 
 ## 14 Parámetros y decisiones abiertas
 
@@ -336,31 +359,15 @@ Las constantes de producción deben poder ajustarse sin reescribir las reglas. N
 
 Pendientes de cierre: modalidad principal de la entrega; selección estable entre ganchos próximos; algoritmo de asistencia y validez del indicador; marco de control independiente de cámara; resolución de llegada y agotamiento simultáneos; política de récord de puntaje bajo el mínimo; conservación o reinicio de registros al cambiar balance; acciones especiales concretas de un eventual nivel Puzzle.
 
-### Testeo de recalibración
-
-Nombre acordado para retomar las pruebas físicas. El control llegó a ready, respondió a giros y volvió a cero en reposo. Una prueba posterior a varios giros mostró mayor mezcla lateral y una diferencia de rumbo estimada cercana a 17 grados, sin referencia física precisa de reposicionamiento.
-
-No se atribuye toda esa diferencia a deriva. Queda pendiente repetir con contorno y frente marcados para separar reposicionamiento y error acumulado. La respuesta básica fue comprobada; la precisión prolongada y el gesto de interacción requieren validación específica.
-
-## 15 Plan de producción y validación
-
-### Secuencia provisional para seis semanas
-
-| Período | Prioridad | Resultado verificable |
-|---|---|---|
-| Semanas 1 y 2 | Integración del dispositivo, retorcimiento y gancho simple | Enganchar, balancear, anticipar y soltar con la pelota real |
-| Semanas 3 y 4 | Integrar recorrido, puntuación, aceleradores, peligros y recuperación | Partida completa de principio a fin con objetivo y resultados |
-| Semanas 5 y 6 | Balance, cámara, feedback, estabilidad y pruebas externas | Recorrido terminado, fallos críticos resueltos y reglas verificadas |
-
-Esta secuencia es una propuesta de planificación, no una estimación cerrada. Se cuenta con dos integrantes; la ayuda ocasional del tercero no debe sostener una dependencia crítica. El responsable del nivel puede avanzar en paralelo con espacios de prueba y recepciones amplias antes de cerrar saltos exigentes.
+## 15 Validación del diseño
 
 ### Pruebas prioritarias
 
-**Control e interacción.** Observar si alguien nuevo distingue rodar de retorcer, si cambia de gesto cómodamente y si confirma por accidente al entrar en un menú. Medir activaciones involuntarias y gestos no reconocidos. No confundir los datos de demo con lecturas físicas.
+**Control e interacción.** Observar si alguien nuevo distingue rodar de retorcer, si cambia de gesto cómodamente y si confirma por accidente al entrar en un menú. Medir activaciones involuntarias y gestos no reconocidos.
 
 **Gancho.** Usar un gancho fijo en un plano y recepción amplia. Comprobar si el jugador aprende a ganar impulso, entiende el marcador y elige cuándo soltarse. Registrar salidas, aterrizajes y discrepancias entre verde y resultado; preguntar después si sintió control sobre el salto.
 
-**Conservación de referencia.** Ejecutar el Testeo de recalibración con marcas físicas. Comparar entrada y salida antes y después de varios giros, evitando cambiar parámetros para ocultar un error no diagnosticado.
+**Conservación de referencia.** Comprobar que, tras varios giros, el movimiento siga respondiendo a la dirección esperada y que la recalibración permita recuperar esa referencia de forma comprensible.
 
 **Cámara.** Repetir la misma entrada durante seguimiento, enganche y vuelo. Verificar que las transiciones no cambien su dirección y que el destino siga siendo legible.
 
@@ -380,9 +387,3 @@ Esta secuencia es una propuesta de planificación, no una estimación cerrada. S
 
 Si el gancho falla en control o legibilidad, se simplifican geometría, tolerancias y condiciones del desafío antes de agregar variantes. Las mecánicas futuras no sustituyen la validación del núcleo.
 
-## Fuentes de trabajo
-
-- Acuerdos de diseño de Kyuboru cerrados con Dylan durante la conversación del 21 de octubre de 2026.
-- [Repositorio del juego](https://github.com/MauroUr/Katamary-alternativo/tree/70e349885c88950c7d728347ab4d9fd99edc1006).
-- `Assets/_Katamari/Scripts/Game/KatamariRun.cs`, `Controls/RotoscopeKatamariInput.cs`, `Props/LevelBlockout.cs`, `Editor/CityDressing.cs` y configuración de `Scenes/Ciudad.unity` de esa revisión.
-- Documentación previa de Kyuboru y pruebas del controlador. Los acuerdos de este GDD prevalecen sobre propuestas anteriores descartadas.
