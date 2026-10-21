@@ -22,6 +22,8 @@ Mode mode=Mode::Waiting;
 uint16_t calibrationCount=0;
 uint32_t lastSample=0, lastOutput=0, lastProbe=0, demoStart=0;
 bool calibrationDiagnostics=false;
+bool movementDiagnostics=false;
+uint32_t movementDiagnosticLast=0;
 uint32_t diagnosticLastOutput=0;
 uint32_t diagnosticSamples=0, diagnosticRejects[5]={};
 uint16_t diagnosticBest=0;
@@ -127,6 +129,9 @@ void handleCommand(char c) {
       lastSample=micros();
     } else if (c=='h') {
       transport.send("# d: demo; c: reconectar; a: confirmar alineacion pendiente; r: diagnostico calibracion USB; h: ayuda\n");
+    } else if (c=='m') {
+      movementDiagnostics=!movementDiagnostics;
+      Serial.println(movementDiagnostics ? "# MOTION_ON: ms,raw_gx,raw_gy,raw_gz,body_gx,body_gy,body_gz,world_gx,world_gy,world_gz,right,forward (gyro rad/s)" : "# MOTION_OFF");
     } else if (c=='r') {
       calibrationDiagnostics=!calibrationDiagnostics;
       diagnosticSamples=0; diagnosticBest=0; diagnosticLastOutput=millis();
@@ -185,7 +190,19 @@ void loop() {
       } else if (elapsed>ball::config::MAX_SAMPLE_GAP_US)
         waitForSensor("seguimiento interrumpido: pausa de muestreo local");
       // Before alignment this is a provisional orientation, not a known heading.
-      else output=motion.update(gyro-bias,accel,dt,mode==Mode::Ready);
+      else {
+        const auto body=gyro-bias;
+        output=motion.update(body,accel,dt,mode==Mode::Ready);
+        // Bench-only USB trace, same sample and orientation used for movement.
+        // 10 Hz keeps diagnostic traffic below the serial link capacity.
+        if (movementDiagnostics && mode==Mode::Ready && millis()-movementDiagnosticLast>=100) {
+          movementDiagnosticLast=millis();
+          const auto world=motion.orientation.rotate(body);
+          Serial.printf("# MOTION,%lu,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f\n",
+            static_cast<unsigned long>(movementDiagnosticLast),gyro.x,gyro.y,gyro.z,
+            body.x,body.y,body.z,world.x,world.y,world.z,output.right,output.forward);
+        }
+      }
     }
   }
   if (millis()-lastOutput>=OUTPUT_MS) {

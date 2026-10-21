@@ -1,0 +1,27 @@
+Testeo de recalibración — 21 de octubre de 2026
+
+Nombre acordado con Dylan para retomar esta prueba más adelante.
+El control funciona en las pruebas manuales: llega a ready, responde al giro
+en ambos ejes y retorna a cero al detenerse. Esto no equivale a validar
+precisión de orientación a largo plazo.
+
+Con referencia recién calibrada, una muestra de giro X dio -2,120 rad/s
+en el sensor (sin bias) y -2,118 rad/s transformado; forward +0,671 y
+right -0,032. Se conservaron los umbrales de calibración horizontal.
+
+Tras varios giros, la proporción RMS lateral/forward en los tramos comparados
+pasó aproximadamente de 16 % a 29 %. El rumbo estimado final difirió unos
+17 grados del inicial. No se puede atribuir todo a deriva: el retorno físico
+a la misma posición/orientación no tuvo una guía precisa.
+
+Pendiente acordado: marcar contorno y frente del sensor sobre papel; comparar
+un giro antes/después de una secuencia, regresando exactamente a las marcas.
+Separar error de reposicionamiento de posible error acumulado del seguimiento.
+No corregir parámetros ni declarar una falla solo con esta prueba manual.
+
+Captura: output/tests/motion/20261021-022349.log
+Diagnóstico USB: comando m alterna giroscopio convertido a rad/s, gyro sin
+bias, gyro transformado y right/forward de la misma muestra a 10 Hz.
+Script: test/capture_motion.py; --recalibrate solicita nueva calibración.
+
+Dylan decidió postergar esta comprobación y retomar diseño del juego/GDD.
