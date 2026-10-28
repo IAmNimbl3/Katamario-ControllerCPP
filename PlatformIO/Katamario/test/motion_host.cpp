@@ -1,5 +1,6 @@
 // Host-only regression tests. No board, Arduino runtime or sensor required.
 #include "BallMotion.h"
+#include "TwistGesture.h"
 #include <cassert>
 #include <cstdio>
 using namespace ball;
@@ -9,6 +10,29 @@ Quat axis(Vec unit,float angle) {
   float s=std::sin(angle/2); return {std::cos(angle/2),unit.x*s,unit.y*s,unit.z*s};
 }
 int main() {
+  TwistGesture gesture;
+  auto feed=[&](Vec v,int samples,bool enabled=true) {
+    int count=0;
+    for(int i=0;i<samples;++i) if(gesture.update(v,0.01f,enabled)) ++count;
+    return count;
+  };
+  assert(feed({0,0,2},50)==0); // Must settle before initial arming.
+  assert(feed({},25)==0);
+  assert(feed({0,0,0.1f},100)==0); // Noise.
+  assert(feed({3,0,2},50)==0); // Rolling dominates the vertical component.
+  assert(feed({0,0,2},1)==0); // Single-sample spike.
+  assert(feed({},25)==0);
+  assert(feed({0,0,2},157)==0); // 179.91 degrees: still below 180.
+  assert(feed({0,0,2},1)==1); // Crosses the configured 180-degree threshold.
+  assert(feed({0,0,2},200)==0); // Sustained twist is still only one press.
+  assert(feed({0,0,-2},50)==0); // Immediate return is not a second press.
+  assert(feed({},70)==0);
+  assert(feed({0,0,-2},157)==0);
+  assert(feed({0,0,-2},1)==1); // Both directions use the same threshold.
+  assert(feed({},70)==0);
+  assert(feed({0,0,2},100,false)==0); // Never during calibration/demo.
+  assert(feed({0,0,2},30)==0); // Reset requires another quiet period.
+  std::puts("PASS: twist noise, dominance, spike, hold, release, both directions, calibration reset");
   Motion m;
   zero(m.update({},{0,0,1},0.01f));
   zero(m.update({0.01f,0.01f,0},{0,0,1},0.01f));

@@ -41,7 +41,8 @@ class Motion {
   float fullSpeed = pi;   // 180 degrees/s gives magnitude 1
   void reset() { orientation=Quat(); }
 
-  // Placeholder: future action for rotation about the fixed vertical axis.
+  // Legacy extension point. Production interaction now lives in TwistGesture.h.
+  // This method remains unused; do not wire it as a second gesture detector.
   // Input would be world.z (signed rad/s), NOT the sensor's local gyro.z.
   // Intentionally empty and not called anywhere; no gameplay effect yet.
   void onVerticalRotation(float verticalAngularVelocityRadPerSec) {

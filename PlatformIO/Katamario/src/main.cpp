@@ -4,6 +4,7 @@
 #include "BallMotion.h"
 #include "ControllerConfig.h"
 #include "ControllerTransport.h"
+#include "TwistGesture.h"
 
 ControllerTransport transport;
 
@@ -15,7 +16,10 @@ constexpr bool BYPASS_ALIGNMENT=true;
 bool alineadoEnUnity=false; // Command a confirms only while awaiting alignment.
 uint8_t address=0x68;
 ball::Motion motion;
-ball::Vec bias, sum;
+ball::TwistGesture twist;
+uint32_t interactionSequence=0; // Cumulative per boot, never reset by calibration.
+float verticalAngularVelocity=0;
+ball::Vec bias, sum, accelSum;
 ball::Output output;
 enum class Mode { Waiting, AwaitingAlignment, Calibrating, Ready, Demo };
 Mode mode=Mode::Waiting;
@@ -28,12 +32,21 @@ uint32_t diagnosticLastOutput=0;
 uint32_t diagnosticSamples=0, diagnosticRejects[5]={};
 uint16_t diagnosticBest=0;
 
+bool calibrationTiltRejected(ball::Vec accel) {
+  const float n=accel.norm();
+  return n<1e-6f || accel.z/n<std::cos(ball::config::CALIBRATION_MAX_TILT_DEG*ball::pi/180.0f);
+}
+bool calibrationMagnitudeRejected(ball::Vec accel) {
+  const float n=accel.norm();
+  return n<ball::config::CALIBRATION_MIN_ACCEL_G || n>ball::config::CALIBRATION_MAX_ACCEL_G;
+}
+
 // Observes every calibration sample; emits USB-only summaries twice per second.
 // Off by default. No calibration thresholds or sensor settings are changed.
 void recordCalibrationDiagnostic(ball::Vec accel, ball::Vec gyro, uint32_t elapsed) {
   if (!calibrationDiagnostics) return;
-  const bool rejected[]={gyro.norm()>0.08f, std::abs(accel.x)>0.10f,
-    std::abs(accel.y)>0.10f, std::abs(accel.z-1)>0.10f,
+  const bool rejected[]={gyro.norm()>ball::config::CALIBRATION_MAX_GYRO_RAD_PER_SEC, calibrationTiltRejected(accel),
+    calibrationMagnitudeRejected(accel), accel.z<=0,
     elapsed>ball::config::MAX_SAMPLE_GAP_US};
   unsigned mask=0;
   for(unsigned i=0;i<5;i++) if(rejected[i]) { mask|=1u<<i; ++diagnosticRejects[i]; }
@@ -66,7 +79,7 @@ bool readSample(ball::Vec &accel, ball::Vec &gyro) {
 }
 void calibrate() {
   alineadoEnUnity=false; // Consume confirmation; do not reuse it after a fault.
-  mode=Mode::Calibrating; calibrationCount=0; sum={}; output={}; motion.reset();
+  mode=Mode::Calibrating; calibrationCount=0; sum={}; accelSum={}; output={}; motion.reset();
   transport.send("# CALIBRATING: 3 s quieta, ejes del sensor X derecha, Y adelante, Z arriba\n");
 }
 void waitForSensor(const char *reason) {
@@ -113,7 +126,7 @@ void setup() {
   Serial.println(transport.begin() ? "# BT_READY: Kyuboru SPP" : "# BT_ERROR: USB sigue disponible");
   Wire.begin(SDA_PIN,SCL_PIN); Wire.setClock(100000); Wire.setTimeOut(20);
   transport.send("# Kyuboru v1. Comandos: d demo, c reconectar, a confirmar alineacion, h ayuda\n");
-  Serial.println("# CSV: K2,millis,status,right,forward,qw,qx,qy,qz");
+  Serial.println("# CSV: K3,millis,status,right,forward,qw,qx,qy,qz,vertical_rad_s,interaction_sequence");
   if (!connectSensor()) waitForSensor("MPU6050 ausente; salida cero. d inicia demo sin sensor");
   lastSample=micros();
 }
@@ -136,7 +149,7 @@ void handleCommand(char c) {
       calibrationDiagnostics=!calibrationDiagnostics;
       diagnosticSamples=0; diagnosticBest=0; diagnosticLastOutput=millis();
       for(auto &n:diagnosticRejects) n=0;
-      Serial.println(calibrationDiagnostics ? "# CALRAW_ON: ax_g,ay_g,az_g,gx_rad_s,gy_rad_s,gz_rad_s,dt_us,mask,good,best,n,reject_gyro,reject_x,reject_y,reject_z,reject_gap" : "# CALRAW_OFF");
+      Serial.println(calibrationDiagnostics ? "# CALRAW_ON: ax_g,ay_g,az_g,gx_rad_s,gy_rad_s,gz_rad_s,dt_us,mask,good,best,n,reject_gyro,reject_tilt,reject_magnitude,reject_upside_down,reject_gap" : "# CALRAW_OFF");
     } else if (c=='a') {
       if (mode==Mode::AwaitingAlignment) {
         alineadoEnUnity=true;
@@ -147,6 +160,7 @@ void handleCommand(char c) {
     }
 }
 void loop() {
+  if (mode!=Mode::Ready) { twist.reset(); verticalAngularVelocity=0; }
   // Bound command handling to avoid starving the sampling loop.
   if (Serial.available()) handleCommand(Serial.read());
   int incoming=transport.readBluetooth();
@@ -176,14 +190,20 @@ void loop() {
       else if (mode==Mode::Calibrating) {
         recordCalibrationDiagnostic(accel,gyro,elapsed);
         // Gravity cannot determine forward: require a known starting pose.
-        if (gyro.norm()>0.08f || std::abs(accel.x)>0.10f ||
-            std::abs(accel.y)>0.10f || std::abs(accel.z-1)>0.10f ||
+        if (gyro.norm()>ball::config::CALIBRATION_MAX_GYRO_RAD_PER_SEC || calibrationTiltRejected(accel) ||
+            calibrationMagnitudeRejected(accel) ||
             elapsed>ball::config::MAX_SAMPLE_GAP_US) {
-          calibrationCount=0; sum={};
+          calibrationCount=0; sum={}; accelSum={};
         } else {
           sum=sum+gyro;
-          if (++calibrationCount==300) {
-            bias=sum*(1.0f/300); motion.reset(); mode=Mode::Ready;
+          accelSum=accelSum+accel;
+          if (++calibrationCount==ball::config::CALIBRATION_SAMPLES) {
+            bias=sum*(1.0f/ball::config::CALIBRATION_SAMPLES);
+            // Shortest rotation from measured gravity to world up. Heading
+            // remains the player's physical alignment; gravity cannot infer it.
+            const auto up=accelSum*(1.0f/accelSum.norm());
+            motion.orientation=ball::Quat(1+up.z,up.y,-up.x,0);
+            motion.orientation.normalize(); mode=Mode::Ready;
             transport.send("# READY: calibracion terminada\n");
           }
         }
@@ -193,6 +213,9 @@ void loop() {
       else {
         const auto body=gyro-bias;
         output=motion.update(body,accel,dt,mode==Mode::Ready);
+        const auto worldGyro=motion.orientation.rotate(body);
+        verticalAngularVelocity=worldGyro.z;
+        if (twist.update(worldGyro,dt,mode==Mode::Ready)) ++interactionSequence;
         // Bench-only USB trace, same sample and orientation used for movement.
         // 10 Hz keeps diagnostic traffic below the serial link capacity.
         if (movementDiagnostics && mode==Mode::Ready && millis()-movementDiagnosticLast>=100) {
@@ -209,10 +232,11 @@ void loop() {
     lastOutput=millis();
     const ball::Quat &q=motion.orientation;
     char line[192];
-    snprintf(line,sizeof(line),"K2,%lu,%s,%.4f,%.4f,%.6f,%.6f,%.6f,%.6f\n",
+    snprintf(line,sizeof(line),"K3,%lu,%s,%.4f,%.4f,%.6f,%.6f,%.6f,%.6f,%.4f,%lu\n",
                   static_cast<unsigned long>(lastOutput),status(),output.right,output.forward,
-                  q.w,q.x,q.y,q.z);
+                  q.w,q.x,q.y,q.z,verticalAngularVelocity,static_cast<unsigned long>(interactionSequence));
     transport.send(line,true);
   }
   delay(1);
 }
+
