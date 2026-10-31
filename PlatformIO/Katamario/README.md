@@ -16,6 +16,9 @@ La conexión inalámbrica real sigue pendiente: el adaptador Bluetooth de Window
 
 ## Documentación
 
+Integración opcional del AK09911C: [magnetómetro y corrección de rumbo](docs/Magnetometro.md).
+Preparada en código, desactivada por defecto y pendiente de calibración y prueba física.
+
 Descripción del concepto: [Kyuboru: el juego](output/pdf/05_Descripcion_del_Juego.pdf).
 
 Ampliación del firmware: [comunicación y receptor de prueba](docs/Comunicacion.md). Los PDFs técnicos todavía no incluyen esta ampliación.

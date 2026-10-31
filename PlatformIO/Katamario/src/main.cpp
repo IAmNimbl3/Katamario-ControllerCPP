@@ -5,6 +5,8 @@
 #include "ControllerConfig.h"
 #include "ControllerTransport.h"
 #include "TwistGesture.h"
+#include "Ak09911Wire.h"
+#include "MagnetometerConfig.h"
 
 ControllerTransport transport;
 
@@ -16,6 +18,46 @@ constexpr bool BYPASS_ALIGNMENT=true;
 bool alineadoEnUnity=false; // Command a confirms only while awaiting alignment.
 uint8_t address=0x68;
 ball::Motion motion;
+ball::Ak09911Wire magneticBus(Wire);
+ball::Ak09911 magnetometer(magneticBus);
+ball::BallOrientation heading;
+uint32_t lastMagneticSample=0, lastMagneticDiagnostic=0;
+bool magneticDiagnostics=false;
+
+void resetMagneticReference() {
+  heading.reset(); lastMagneticSample=0;
+}
+void connectMagnetometer() {
+  resetMagneticReference();
+  heading.settings=ball::magneticConfig::settings();
+  heading.calibration=ball::magneticConfig::calibration();
+  if (!ball::magneticConfig::ENABLED) return;
+  Serial.println(magnetometer.begin() ? "# MAG: AK09911 detected; correction requires mounting calibration" :
+                                      "# MAG: absent/error; MPU6050-only fallback (c retries)");
+}
+void updateMagneticHeading(ball::Vec gyro) {
+  if (!ball::magneticConfig::ENABLED) return;
+  heading.observeGyro(gyro);
+  ball::Vec field;
+  const auto result=magnetometer.read(field);
+  const uint32_t now=micros();
+  if (result==ball::Ak09911::Result::Sample) {
+    const float dt=lastMagneticSample ? (now-lastMagneticSample)*1e-6f : 0;
+    lastMagneticSample=now;
+    heading.update(motion.orientation,field,gyro,dt);
+  } else if (result!=ball::Ak09911::Result::NotReady) {
+    heading.missingSample(); lastMagneticSample=0;
+  } else if (lastMagneticSample && now-lastMagneticSample>ball::config::MAX_SAMPLE_GAP_US) {
+    heading.missingSample(); lastMagneticSample=0;
+  }
+  if (magneticDiagnostics && millis()-lastMagneticDiagnostic>=200) {
+    lastMagneticDiagnostic=millis();
+    // Invalid/no-data results have zero fields, never a cached measurement.
+    Serial.printf("# MAG,%lu,%u,%u,%.3f,%.3f,%.3f\n",
+      static_cast<unsigned long>(lastMagneticDiagnostic),unsigned(result),unsigned(heading.state()),
+      field.x,field.y,field.z);
+  }
+}
 ball::TwistGesture twist;
 uint32_t interactionSequence=0; // Cumulative per boot, never reset by calibration.
 float verticalAngularVelocity=0;
@@ -78,17 +120,20 @@ bool readSample(ball::Vec &accel, ball::Vec &gyro) {
          std::abs(int(decodeInt16(12)))<32700;
 }
 void calibrate() {
+  resetMagneticReference();
   alineadoEnUnity=false; // Consume confirmation; do not reuse it after a fault.
   mode=Mode::Calibrating; calibrationCount=0; sum={}; accelSum={}; output={}; motion.reset();
   transport.send("# CALIBRATING: 3 s quieta, ejes del sensor X derecha, Y adelante, Z arriba\n");
 }
 void waitForSensor(const char *reason) {
+  resetMagneticReference();
   alineadoEnUnity=false;
   mode=Mode::Waiting; output={}; motion.reset(); lastProbe=millis();
   char line[192]; snprintf(line,sizeof(line),"# WAITING: %s\n",reason);
   transport.send(line);
 }
 bool connectSensor() {
+  resetMagneticReference();
   const uint8_t addresses[]={0x68,0x69};
   for (uint8_t a : addresses) {
     Wire.beginTransmission(a);
@@ -125,23 +170,30 @@ void setup() {
   Serial.begin(115200);
   Serial.println(transport.begin() ? "# BT_READY: Kyuboru SPP" : "# BT_ERROR: USB sigue disponible");
   Wire.begin(SDA_PIN,SCL_PIN); Wire.setClock(100000); Wire.setTimeOut(20);
+  connectMagnetometer();
   transport.send("# Kyuboru v1. Comandos: d demo, c reconectar, a confirmar alineacion, h ayuda\n");
   Serial.println("# CSV: K3,millis,status,right,forward,qw,qx,qy,qz,vertical_rad_s,interaction_sequence");
   if (!connectSensor()) waitForSensor("MPU6050 ausente; salida cero. d inicia demo sin sensor");
   lastSample=micros();
 }
 // Single-byte bench commands shared by USB and SPP. CR/LF are ignored.
-// Unity integration is not implemented. c never confirms alignment.
+// Unity uses c on reconnect. c never confirms physical alignment.
 void handleCommand(char c) {
     if (c=='d') {
+      resetMagneticReference();
       alineadoEnUnity=false;
       mode=Mode::Demo; demoStart=millis(); motion.reset(); output={};
       transport.send("# DEMO: datos sinteticos, NO lecturas de la pelota\n");
     } else if (c=='c') {
+      connectMagnetometer();
       if (!connectSensor()) waitForSensor("sensor ausente");
       lastSample=micros();
     } else if (c=='h') {
-      transport.send("# d: demo; c: reconectar; a: confirmar alineacion pendiente; r: diagnostico calibracion USB; h: ayuda\n");
+      transport.send("# d: demo; c: reconectar; a: confirmar alineacion pendiente; r: diagnostico calibracion USB; g: diagnostico magnetometro USB; h: ayuda\n");
+    } else if (c=='g') {
+      magneticDiagnostics=!magneticDiagnostics;
+      Serial.println(!ball::magneticConfig::ENABLED ? "# MAG_DISABLED: enable MagnetometerConfig.h first" :
+        (magneticDiagnostics ? "# MAG_ON: ms,result,state,mx_uT,my_uT,mz_uT (see docs/Magnetometro.md)" : "# MAG_OFF"));
     } else if (c=='m') {
       movementDiagnostics=!movementDiagnostics;
       Serial.println(movementDiagnostics ? "# MOTION_ON: ms,raw_gx,raw_gy,raw_gz,body_gx,body_gy,body_gz,world_gx,world_gy,world_gz,right,forward (gyro rad/s)" : "# MOTION_OFF");
@@ -212,6 +264,10 @@ void loop() {
       // Before alignment this is a provisional orientation, not a known heading.
       else {
         const auto body=gyro-bias;
+        // Optional bounded yaw aid before the existing MPU integration/output.
+        // Only Ready samples can establish the magnetic reference; demo and
+        // alignment/calibration retain their original MPU-only behavior.
+        if (mode==Mode::Ready) updateMagneticHeading(body);
         output=motion.update(body,accel,dt,mode==Mode::Ready);
         const auto worldGyro=motion.orientation.rotate(body);
         verticalAngularVelocity=worldGyro.z;
