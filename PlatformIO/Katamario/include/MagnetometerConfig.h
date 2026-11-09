@@ -4,7 +4,10 @@
 namespace ball { namespace magneticConfig {
 // Opt in only after checking the actual MCU9911 board. False means zero extra
 // I2C traffic and the existing MPU6050-only behavior, even without a magnetometer.
-constexpr bool ENABLED=false;
+constexpr bool ENABLED=true; // Bench detection/readout; correction remains off while calibration.valid=false.
+// MCU9911 RST wired to GPIO25: weak bias only, never an actively driven output.
+// Set -1 for boards that already hold RST high without this connection.
+constexpr int RESET_PULLUP_PIN=25;
 inline BallOrientation::Settings settings() {
   BallOrientation::Settings result;
   result.enabled=ENABLED;

@@ -1,0 +1,12 @@
+# SCAN 7 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x68
+# END found=1 other_errors=0
+# SCAN 8 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x68
+# END found=1 other_errors=0
+# SCAN 9 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x68
+# END found=1 other_errors=0
+# SCAN 10 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x68
+# END found=1 other_errors=0

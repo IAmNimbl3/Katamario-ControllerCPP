@@ -1,0 +1,20 @@
+# RST GPIO25 INPUT_PULLUP digital=1 (not a voltage measurement)
+# SCAN 4 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x0D
+ACK 0x68
+# END found=2 other_errors=0
+# RST GPIO25 INPUT_PULLUP digital=1 (not a voltage measurement)
+# SCAN 5 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x0D
+ACK 0x68
+# END found=2 other_errors=0
+# RST GPIO25 INPUT_PULLUP digital=1 (not a voltage measurement)
+# SCAN 6 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x0D
+ACK 0x68
+# END found=2 other_errors=0
+# RST GPIO25 INPUT_PULLUP digital=1 (not a voltage measurement)
+# SCAN 7 SDA=21 SCL=22 clock=100000 idle_sda=1 idle_scl=1
+ACK 0x0D
+ACK 0x68
+# END found=2 other_errors=0

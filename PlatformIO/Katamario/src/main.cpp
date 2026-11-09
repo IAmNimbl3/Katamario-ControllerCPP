@@ -32,6 +32,12 @@ void connectMagnetometer() {
   heading.settings=ball::magneticConfig::settings();
   heading.calibration=ball::magneticConfig::calibration();
   if (!ball::magneticConfig::ENABLED) return;
+  // Bench evidence: distinguish missing I2C acknowledgement from driver setup failure.
+  for (uint8_t candidate : {uint8_t(0x0C), uint8_t(0x0D)}) {
+    Wire.beginTransmission(candidate);
+    const auto error=Wire.endTransmission();
+    Serial.printf("# MAG_PROBE: address=0x%02X i2c_error=%u\n",candidate,unsigned(error));
+  }
   Serial.println(magnetometer.begin() ? "# MAG: AK09911 detected; correction requires mounting calibration" :
                                       "# MAG: absent/error; MPU6050-only fallback (c retries)");
 }
@@ -168,6 +174,10 @@ const char *status() {
 }
 void setup() {
   Serial.begin(115200);
+  if (ball::magneticConfig::ENABLED && ball::magneticConfig::RESET_PULLUP_PIN>=0) {
+    pinMode(ball::magneticConfig::RESET_PULLUP_PIN, INPUT_PULLUP);
+    delay(100); // Allow sensor reset release before its first I2C transaction.
+  }
   Serial.println(transport.begin() ? "# BT_READY: Kyuboru SPP" : "# BT_ERROR: USB sigue disponible");
   Wire.begin(SDA_PIN,SCL_PIN); Wire.setClock(100000); Wire.setTimeOut(20);
   connectMagnetometer();
