@@ -24,6 +24,7 @@ class BallOrientation {
   struct Settings {
     bool enabled=false;
     float gainPerSecond=0.5f;
+    float fieldSmoothingSeconds=0; // Optional low-pass in world frame while near rest.
     float maxCorrectionRadPerSecond=0.05f;
     float maxGyroRadPerSecond=0.15f;
     float quietSecondsBeforeCorrection=2.5f;
@@ -43,7 +44,7 @@ class BallOrientation {
   }
   State state() const { return state_; }
   float stableSeconds() const { return stableSeconds_; }
-  void missingSample() { resetWindow(); state_=State::Waiting; }
+  void missingSample() { resetWindow(); filtered_=false; state_=State::Waiting; }
   // Observe EVERY MPU sample, including when no new magnetic reading exists.
   // A short movement between magnetometer samples must restart the dwell too.
   void observeGyro(Vec gyro) {
@@ -56,11 +57,16 @@ class BallOrientation {
     if (!settings.enabled) { resetWindow(); state_=State::Disabled; return false; }
     if (!calibration.valid) { resetWindow(); state_=State::Uncalibrated; return false; }
     Vec body=calibration.apply(raw);
-    const float norm=body.norm();
+    float norm=body.norm();
     if (!(dt>0 && dt<=config::MAX_SAMPLE_GAP_SECONDS) ||
         !std::isfinite(norm) || !(gyro.norm()<=settings.maxGyroRadPerSecond) ||
         norm<settings.minFieldMicrotesla || norm>settings.maxFieldMicrotesla) return reject();
     Vec world=orientation.rotate(body);
+    if (settings.fieldSmoothingSeconds>0) {
+      const float alpha=1-std::exp(-dt/settings.fieldSmoothingSeconds);
+      filteredWorld_=filtered_ ? filteredWorld_+(world-filteredWorld_)*alpha : world;
+      filtered_=true; world=filteredWorld_; norm=world.norm();
+    }
     const float horizontal=std::sqrt(world.x*world.x+world.y*world.y);
     if (!std::isfinite(world.norm()) || !std::isfinite(horizontal) ||
         horizontal<settings.minHorizontalMicrotesla) return reject();
@@ -107,6 +113,7 @@ class BallOrientation {
     // Keep the stability window in the corrected frame. Our own correction
     // must not look like a magnetic disturbance on the following sample.
     windowDirection_=correction.rotate(windowDirection_);
+    if (filtered_) filteredWorld_=correction.rotate(filteredWorld_);
     orientation.normalize(); state_=State::Corrected;
     return true;
   }
@@ -118,8 +125,9 @@ class BallOrientation {
     windowDirection_=world*(1.0f/world.norm()); windowStrength_=strength;
     stableSeconds_=0; windowStarted_=true;
   }
-  bool reject() { resetWindow(); state_=State::Rejected; return false; }
-  Vec reference_,sum_;
+  bool reject() { resetWindow(); filtered_=false; state_=State::Rejected; return false; }
+  Vec reference_,sum_,filteredWorld_;
+  bool filtered_=false;
   Vec windowDirection_;
   float windowStrength_=0,stableSeconds_=0;
   float strength_=0;

@@ -23,9 +23,11 @@ ball::Ak09911 magnetometer(magneticBus);
 ball::BallOrientation heading;
 uint32_t lastMagneticSample=0, lastMagneticDiagnostic=0;
 bool magneticDiagnostics=false;
+bool magneticCorrectedSinceReport=false;
+uint32_t lastMagneticStateReport=0;
 
 void resetMagneticReference() {
-  heading.reset(); lastMagneticSample=0;
+  heading.reset(); lastMagneticSample=0; magneticCorrectedSinceReport=false;
 }
 void connectMagnetometer() {
   resetMagneticReference();
@@ -50,7 +52,7 @@ void updateMagneticHeading(ball::Vec gyro) {
   if (result==ball::Ak09911::Result::Sample) {
     const float dt=lastMagneticSample ? (now-lastMagneticSample)*1e-6f : 0;
     lastMagneticSample=now;
-    heading.update(motion.orientation,field,gyro,dt);
+    magneticCorrectedSinceReport=heading.update(motion.orientation,field,gyro,dt) || magneticCorrectedSinceReport;
   } else if (result!=ball::Ak09911::Result::NotReady) {
     heading.missingSample(); lastMagneticSample=0;
   } else if (lastMagneticSample && now-lastMagneticSample>ball::config::MAX_SAMPLE_GAP_US) {
@@ -113,17 +115,18 @@ void recordCalibrationDiagnostic(ball::Vec accel, ball::Vec gyro, uint32_t elaps
   for(auto &n:diagnosticRejects) n=0;
 }
 
-bool readSample(ball::Vec &accel, ball::Vec &gyro) {
+enum class SampleResult { Ok, I2cFailure, GyroSaturated };
+SampleResult readSample(ball::Vec &accel, ball::Vec &gyro) {
   uint8_t data[14];
   // getMotion6 returns void; a checked burst rejects failed/partial I2C reads.
-  if (I2Cdev::readBytes(address, MPU6050_RA_ACCEL_XOUT_H, 14, data, 20)!=14) return false;
+  if (I2Cdev::readBytes(address, MPU6050_RA_ACCEL_XOUT_H, 14, data, 20)!=14) return SampleResult::I2cFailure;
   // word(...) is an Arduino macro; use a distinct name to decode the buffer.
   auto decodeInt16=[&](int i) { return static_cast<int16_t>((uint16_t(data[i])<<8)|data[i+1]); };
   accel=ball::Vec(decodeInt16(0),decodeInt16(2),decodeInt16(4))*(1.0f/16384.0f);
   gyro=ball::Vec(decodeInt16(8),decodeInt16(10),decodeInt16(12))*(ball::pi/(180.0f*16.4f));
   // Saturation loses orientation information; require a fresh calibration.
   return std::abs(int(decodeInt16(8)))<32700 && std::abs(int(decodeInt16(10)))<32700 &&
-         std::abs(int(decodeInt16(12)))<32700;
+         std::abs(int(decodeInt16(12)))<32700 ? SampleResult::Ok : SampleResult::GyroSaturated;
 }
 void calibrate() {
   resetMagneticReference();
@@ -224,9 +227,28 @@ void handleCommand(char c) {
 void loop() {
   if (mode!=Mode::Ready) { twist.reset(); verticalAngularVelocity=0; }
   // Bound command handling to avoid starving the sampling loop.
-  if (Serial.available()) handleCommand(Serial.read());
+  int usbIncoming=Serial.available() ? Serial.read() : -1;
+  if (usbIncoming>=0 && transport.acceptsUsbCommands())
+    handleCommand(static_cast<char>(usbIncoming));
   int incoming=transport.readBluetooth();
   if (incoming>=0) handleCommand(static_cast<char>(incoming));
+#if KYUBORU_COMMAND_DIAGNOSTICS
+  // Count received bytes by transport, without producing a reply per byte.
+  // This bench environment preserves the normal command handling above.
+  static uint32_t usbBytes=0, bluetoothBytes=0, lastCommandReport=0;
+  static int lastUsb=-1, lastBluetooth=-1;
+  if (usbIncoming>=0) { ++usbBytes; lastUsb=usbIncoming; }
+  if (incoming>=0) { ++bluetoothBytes; lastBluetooth=incoming; }
+  if (millis()-lastCommandReport>=1000) {
+    char report[128];
+    snprintf(report,sizeof(report),"# RX_SOURCE: usb=%lu last=%d bt=%lu last=%d\n",
+             static_cast<unsigned long>(usbBytes),lastUsb,
+             static_cast<unsigned long>(bluetoothBytes),lastBluetooth);
+    transport.send(report);
+    usbBytes=bluetoothBytes=0; lastUsb=lastBluetooth=-1;
+    lastCommandReport=millis();
+  }
+#endif
   if (mode==Mode::Waiting && millis()-lastProbe>=2000) {
     lastProbe=millis(); connectSensor(); lastSample=micros();
   }
@@ -248,7 +270,10 @@ void loop() {
                            inverse.rotate({0,0,1}),dt);
     } else if (mode==Mode::Ready || mode==Mode::Calibrating || mode==Mode::AwaitingAlignment) {
       ball::Vec accel, gyro;
-      if (!readSample(accel,gyro)) waitForSensor("lectura fallida o giro saturado; recalibracion requerida");
+      const auto sampleResult=readSample(accel,gyro);
+      if (sampleResult!=SampleResult::Ok) waitForSensor(sampleResult==SampleResult::I2cFailure
+          ? "MPU: lectura I2C fallida; recalibracion requerida"
+          : "MPU: giroscopio saturado; recalibracion requerida");
       else if (mode==Mode::Calibrating) {
         recordCalibrationDiagnostic(accel,gyro,elapsed);
         // Gravity cannot determine forward: require a known starting pose.
@@ -302,6 +327,16 @@ void loop() {
                   static_cast<unsigned long>(lastOutput),status(),output.right,output.forward,
                   q.w,q.x,q.y,q.z,verticalAngularVelocity,static_cast<unsigned long>(interactionSequence));
     transport.send(line,true);
+  }
+  // Separate backwards-compatible diagnostic; K3 movement format is unchanged.
+  if (millis()-lastMagneticStateReport>=200) {
+    lastMagneticStateReport=millis();
+    char report[64];
+    snprintf(report,sizeof(report),"# MAGSTATE,%lu,%u\n",
+        static_cast<unsigned long>(lastMagneticStateReport),
+        unsigned(mode==Mode::Ready && magneticCorrectedSinceReport));
+    transport.send(report);
+    magneticCorrectedSinceReport=false;
   }
   delay(1);
 }

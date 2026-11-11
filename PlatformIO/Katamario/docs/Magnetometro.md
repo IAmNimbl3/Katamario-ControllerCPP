@@ -1,7 +1,16 @@
 # AK09911C opcional: lectura y corrección de rumbo
 
-Estado: implementación inicial, pendiente de validación física. No se cargó en
-el ESP32. No sustituye al MPU6050 ni cambia el CSV K3 de Unity.
+Estado (2026-11-10): driver verificado en la placa y correccion provisional
+habilitada en `MagnetometerConfig.h`. Ambos sensores permanecen fijos entre si.
+No sustituye al MPU6050 ni cambia el CSV K3 de Unity.
+
+La calibracion provisional proviene de `output/tests/2026-11-10-magnetometer/`:
+ajuste afin conjunto contra la orientacion del MPU, con descomposicion polar
+para separar montaje y compensacion magnetica. La escala global se normaliza
+por determinante; no es una medicion independiente de la intensidad terrestre.
+Error de rumbo sobre el conjunto ajustado: mediana 7,6 grados, percentil 95
+18,9 grados. Es ayuda provisional, no alineacion de precision validada.
+Para deshabilitar solo la correccion: `calibration.valid=false`.
 
 ## Estructura
 
@@ -18,7 +27,7 @@ el ESP32. No sustituye al MPU6050 ni cambia el CSV K3 de Unity.
 
 1. Verificar alimentación y niveles de la placa MCU9911 real. Este código no
    certifica su electrónica. Mantener el bus compartido a 100 kHz y lógica 3,3 V.
-2. `magneticConfig::ENABLED=false` es el valor de entrega: sin tráfico I2C
+2. `magneticConfig::ENABLED=false` permite deshabilitar el modulo: sin tráfico I2C
    adicional ni cambio en las lecturas/movimiento del MPU6050.
 3. Habilitar para probar identidad y lecturas; dejar `calibration.valid=false`.
    Con `g` se alterna diagnóstico USB a 5 Hz, solo durante Ready. No corrige aún.

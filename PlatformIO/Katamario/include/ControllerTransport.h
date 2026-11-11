@@ -39,6 +39,9 @@ class ControllerTransport {
     return enabled;
   }
   int readBluetooth() { return enabled && bt.available() ? bt.read() : -1; }
+  // A connected SPP client owns commands. On battery, the USB UART can
+  // receive spurious bytes; never let those override Bluetooth control.
+  bool acceptsUsbCommands() { return !enabled || !bt.hasClient(); }
   void send(const char *text, bool telemetry=false) {
     Serial.print(text);
     if (!enabled || !bt.hasClient()) return;

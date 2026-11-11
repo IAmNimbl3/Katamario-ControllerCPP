@@ -1,0 +1,722 @@
+0.00366120000398951|Listo|ready|# ERR: comando desconocido
+0.024770100004389|Listo|ready|# ERR: comando desconocido
+0.0455115000004298|Listo|ready|# ERR: comando desconocido
+0.0656137000041781|Listo|ready|# ERR: comando desconocido
+0.0865840000042226|Listo|ready|# ERR: comando desconocido
+0.107263999998395|Listo|ready|# ERR: comando desconocido
+0.127852700003132|Listo|ready|# ERR: comando desconocido
+0.148589700002049|Listo|ready|# ERR: comando desconocido
+0.169676800003799|Listo|ready|# ERR: comando desconocido
+0.191000099999656|Listo|ready|# ERR: comando desconocido
+0.211311500002921|Listo|ready|# ERR: comando desconocido
+0.2323114000028|Listo|ready|# ERR: comando desconocido
+0.252727700004471|Listo|ready|# ERR: comando desconocido
+0.2731139000025|Listo|ready|# ERR: comando desconocido
+0.293891000001167|Listo|ready|# ERR: comando desconocido
+0.314153300001635|Listo|ready|# ERR: comando desconocido
+0.334840600000462|Listo|ready|# ERR: comando desconocido
+0.355805200000759|Listo|ready|# ERR: comando desconocido
+0.375943099999859|Listo|ready|# ERR: comando desconocido
+0.396645799999533|Listo|ready|# ERR: comando desconocido
+0.416773299999477|Listo|ready|# ERR: comando desconocido
+0.437603099999251|Listo|ready|# ERR: comando desconocido
+0.458738400004222|Listo|ready|# ERR: comando desconocido
+0.478795000002719|Listo|ready|# ERR: comando desconocido
+0.498888699999952|Listo|ready|# ERR: comando desconocido
+0.519535100000212|Listo|ready|# ERR: comando desconocido
+0.539695200001006|Listo|ready|# ERR: comando desconocido
+0.56020929999795|Listo|ready|# ERR: comando desconocido
+0.580795699999726|Listo|ready|# ERR: comando desconocido
+0.602008300003945|Listo|ready|# ERR: comando desconocido
+0.622156000004907|Listo|ready|# ERR: comando desconocido
+0.642407500003173|Listo|ready|# ERR: comando desconocido
+0.66287580000062|Listo|ready|# ERR: comando desconocido
+0.683565300001646|Listo|ready|# ERR: comando desconocido
+0.704745499999262|Listo|ready|# ERR: comando desconocido
+0.725270599999931|Listo|ready|# ERR: comando desconocido
+0.745388900002581|Listo|ready|# ERR: comando desconocido
+0.765399800002342|Listo|ready|# ERR: comando desconocido
+0.786119700002018|Listo|ready|# ERR: comando desconocido
+0.806770000002871|Listo|ready|# ERR: comando desconocido
+0.826992300004349|Listo|ready|# ERR: comando desconocido
+0.847346399998059|Listo|ready|# ERR: comando desconocido
+0.868239800001902|Listo|ready|# ERR: comando desconocido
+0.889079200002016|Listo|ready|# ERR: comando desconocido
+0.910176900004444|Listo|ready|# ERR: comando desconocido
+0.931089700003213|Listo|ready|# ERR: comando desconocido
+0.951988900000288|Listo|ready|# ERR: comando desconocido
+0.97286520000489|Listo|ready|# ERR: comando desconocido
+0.993244400000549|Listo|ready|# ERR: comando desconocido
+1.01362900000095|Listo|ready|# ERR: comando desconocido
+1.03480320000381|Listo|ready|# ERR: comando desconocido
+1.0549119999996|Listo|ready|# ERR: comando desconocido
+1.07531870000093|Listo|ready|# ERR: comando desconocido
+1.09536780000053|Listo|ready|# ERR: comando desconocido
+1.11542670000199|Listo|ready|# ERR: comando desconocido
+1.13617190000514|Listo|ready|# ERR: comando desconocido
+1.1570972000045|Listo|ready|# ERR: comando desconocido
+1.17812190000404|Listo|ready|# ERR: comando desconocido
+1.1988696000044|Listo|ready|# ERR: comando desconocido
+1.21937040000194|Listo|ready|# ERR: comando desconocido
+1.24010049999924|Listo|ready|# ERR: comando desconocido
+1.26014170000417|Listo|ready|# ERR: comando desconocido
+1.28058250000322|Listo|ready|# ERR: comando desconocido
+1.30132370000501|Listo|ready|# ERR: comando desconocido
+1.3213614999986|Listo|ready|# ERR: comando desconocido
+1.34146100000362|Listo|ready|# ERR: comando desconocido
+1.36165130000154|Listo|ready|# ERR: comando desconocido
+1.38238629999978|Listo|ready|# ERR: comando desconocido
+1.40243740000005|Listo|ready|# ERR: comando desconocido
+1.42253989999881|Listo|ready|# ERR: comando desconocido
+1.44357920000039|Listo|ready|# ERR: comando desconocido
+1.46393430000171|Listo|ready|# ERR: comando desconocido
+1.4847563000003|Listo|ready|# ERR: comando desconocido
+1.50607310000487|Listo|ready|# ERR: comando desconocido
+1.52686299999914|Listo|ready|# ERR: comando desconocido
+1.54816250000295|Listo|ready|# ERR: comando desconocido
+1.56885509999847|Listo|ready|# ERR: comando desconocido
+1.58895119999943|Listo|ready|# ERR: comando desconocido
+1.60985510000319|Listo|ready|# ERR: comando desconocido
+1.63111539999954|Listo|ready|# ERR: comando desconocido
+1.65177920000133|Listo|ready|# ERR: comando desconocido
+1.67227100000309|Listo|ready|# ERR: comando desconocido
+1.69286580000335|Listo|ready|# ERR: comando desconocido
+1.71315660000255|Listo|ready|# ERR: comando desconocido
+1.73323090000486|Listo|ready|# ERR: comando desconocido
+1.7542356000049|Listo|ready|# ERR: comando desconocido
+1.7748763999989|Listo|ready|# ERR: comando desconocido
+1.7963036000001|Listo|ready|# ERR: comando desconocido
+1.81701959999918|Listo|ready|# ERR: comando desconocido
+1.83769269999902|Listo|ready|# ERR: comando desconocido
+1.85859540000092|Listo|ready|# ERR: comando desconocido
+1.8801134000023|Listo|ready|# ERR: comando desconocido
+1.90075249999791|Listo|ready|# ERR: comando desconocido
+1.92140900000231|Listo|ready|# ERR: comando desconocido
+1.94266110000171|Listo|ready|# RX_SOURCE: usb=157 last=4 bt=0 last=-1
+1.96359980000125|Listo|ready|# ERR: comando desconocido
+1.98399630000495|Listo|ready|# ERR: comando desconocido
+2.00472810000065|Listo|ready|# ERR: comando desconocido
+2.02550229999906|Listo|ready|# ERR: comando desconocido
+2.04637229999935|Listo|ready|# ERR: comando desconocido
+2.06725749999896|Listo|ready|# ERR: comando desconocido
+2.08828480000375|Listo|ready|# ERR: comando desconocido
+2.1083964999998|Listo|ready|# ERR: comando desconocido
+2.12896040000487|Listo|ready|# ERR: comando desconocido
+2.14921370000229|Listo|ready|# ERR: comando desconocido
+2.17009849999886|Listo|ready|# ERR: comando desconocido
+2.19055360000493|Listo|ready|# ERR: comando desconocido
+2.2106505000047|Listo|ready|# ERR: comando desconocido
+2.2315552|Listo|ready|# ERR: comando desconocido
+2.25194300000294|Listo|ready|# ERR: comando desconocido
+2.27271840000321|Listo|ready|# ERR: comando desconocido
+2.29349380000349|Listo|ready|# ERR: comando desconocido
+2.31389360000321|Listo|ready|# ERR: comando desconocido
+2.3349390000003|Listo|ready|# ERR: comando desconocido
+2.35573000000295|Listo|ready|# ERR: comando desconocido
+2.37635640000371|Listo|ready|# ERR: comando desconocido
+2.39690600000176|Listo|ready|# ERR: comando desconocido
+2.41760369999975|Listo|ready|# ERR: comando desconocido
+2.43840540000383|Listo|ready|# ERR: comando desconocido
+2.45930500000395|Listo|ready|# ERR: comando desconocido
+2.47978339999827|Listo|ready|# ERR: comando desconocido
+2.50103279999894|Listo|ready|# ERR: comando desconocido
+2.52142750000348|Listo|ready|# ERR: comando desconocido
+2.54185470000084|Listo|ready|# ERR: comando desconocido
+2.5634979000024|Listo|ready|# ERR: comando desconocido
+2.5844539000027|Listo|ready|# ERR: comando desconocido
+2.60498029999872|Listo|ready|# ERR: comando desconocido
+2.6252811000013|Listo|ready|# ERR: comando desconocido
+2.64608650000446|Listo|ready|# ERR: comando desconocido
+2.66728290000174|Listo|ready|# ERR: comando desconocido
+2.68821220000245|Listo|ready|# ERR: comando desconocido
+2.70916189999843|Listo|ready|# ERR: comando desconocido
+2.7321735000005|Listo|ready|# ERR: comando desconocido
+2.75265070000023|Listo|ready|# ERR: comando desconocido
+2.77320239999972|Listo|ready|# ERR: comando desconocido
+2.79406980000203|Listo|ready|# ERR: comando desconocido
+2.81423509999877|Listo|ready|# ERR: comando desconocido
+2.83482979999826|Listo|ready|# ERR: comando desconocido
+2.855006400001|Listo|ready|# ERR: comando desconocido
+2.87530680000054|Listo|ready|# ERR: comando desconocido
+2.89640280000458|Listo|ready|# ERR: comando desconocido
+2.918087500002|Listo|ready|# ERR: comando desconocido
+2.93865570000344|Listo|ready|# ERR: comando desconocido
+2.96167670000432|Listo|ready|# ERR: comando desconocido
+2.98244210000121|Listo|ready|# ERR: comando desconocido
+3.0027573000043|Listo|ready|# ERR: comando desconocido
+3.02418500000203|Listo|ready|# ERR: comando desconocido
+3.04418689999875|Listo|ready|# ERR: comando desconocido
+3.06463570000051|Listo|ready|# ERR: comando desconocido
+3.08496079999895|Listo|ready|# ERR: comando desconocido
+3.10525790000247|Listo|ready|# ERR: comando desconocido
+3.12527509999927|Listo|ready|# ERR: comando desconocido
+3.14550930000405|Listo|ready|# ERR: comando desconocido
+3.1658998999992|Listo|ready|# ERR: comando desconocido
+3.18725049999921|Listo|ready|# ERR: comando desconocido
+3.21348990000115|Listo|ready|# ERR: comando desconocido
+3.23485880000226|Listo|ready|# ERR: comando desconocido
+3.25487360000261|Listo|ready|# ERR: comando desconocido
+3.27582390000316|Listo|ready|# ERR: comando desconocido
+3.29640330000257|Listo|ready|# ERR: comando desconocido
+3.31674049999856|Listo|ready|# ERR: comando desconocido
+3.33731519999856|Listo|ready|# ERR: comando desconocido
+3.35768839999946|Listo|ready|# ERR: comando desconocido
+3.3782588000031|Listo|ready|# ERR: comando desconocido
+3.3983767000027|Listo|ready|# ERR: comando desconocido
+3.41928660000121|Listo|ready|# ERR: comando desconocido
+3.43974400000297|Listo|ready|# ERR: comando desconocido
+3.46042429999943|Listo|ready|# ERR: comando desconocido
+3.48127119999845|Listo|ready|# ERR: comando desconocido
+3.50280930000008|Listo|ready|# ERR: comando desconocido
+3.52335100000346|Listo|ready|# ERR: comando desconocido
+3.54429019999952|Listo|ready|# ERR: comando desconocido
+3.56509350000124|Listo|ready|# ERR: comando desconocido
+3.58628709999903|Listo|ready|# ERR: comando desconocido
+3.60675410000113|Listo|ready|# ERR: comando desconocido
+3.6287353000007|Listo|ready|# ERR: comando desconocido
+3.64992409999832|Listo|ready|# ERR: comando desconocido
+3.67017409999971|Listo|ready|# ERR: comando desconocido
+3.69234020000295|Listo|ready|# ERR: comando desconocido
+3.71435270000075|Listo|ready|# ERR: comando desconocido
+3.73508199999924|Listo|ready|# ERR: comando desconocido
+3.7560908000014|Listo|ready|# ERR: comando desconocido
+3.77705440000136|Listo|ready|# ERR: comando desconocido
+3.79706979999901|Listo|ready|# ERR: comando desconocido
+3.81715020000411|Listo|ready|# ERR: comando desconocido
+3.83790579999913|Listo|ready|# ERR: comando desconocido
+3.85839210000267|Listo|ready|# ERR: comando desconocido
+3.87906920000387|Listo|ready|# ERR: comando desconocido
+3.89926969999942|Listo|ready|# ERR: comando desconocido
+3.91937229999894|Listo|ready|# ERR: comando desconocido
+3.93980490000104|Listo|ready|# ERR: comando desconocido
+3.96001380000234|Listo|ready|# RX_SOURCE: usb=185 last=32 bt=0 last=-1
+3.98027160000493|Listo|ready|# ERR: comando desconocido
+4.00126560000353|Listo|ready|# ERR: comando desconocido
+4.02154719999817|Listo|ready|# ERR: comando desconocido
+4.04214250000223|Listo|ready|# ERR: comando desconocido
+4.06330750000052|Listo|ready|# ERR: comando desconocido
+4.08439070000168|Listo|ready|# ERR: comando desconocido
+4.10491370000091|Listo|ready|# ERR: comando desconocido
+4.12563510000473|Listo|ready|# ERR: comando desconocido
+4.14604900000268|Listo|ready|# ERR: comando desconocido
+4.16892150000058|Listo|ready|# ERR: comando desconocido
+4.1900014999992|Listo|ready|# ERR: comando desconocido
+4.21110590000171|Listo|ready|# ERR: comando desconocido
+4.23135960000218|Listo|ready|# ERR: comando desconocido
+4.25138400000287|Listo|ready|# ERR: comando desconocido
+4.27227900000435|Listo|ready|# ERR: comando desconocido
+4.29323809999914|Listo|ready|# ERR: comando desconocido
+4.3144495000015|Listo|ready|# ERR: comando desconocido
+4.33518159999949|Listo|ready|# ERR: comando desconocido
+4.35519680000289|Listo|ready|# ERR: comando desconocido
+4.37580970000272|Listo|ready|# ERR: comando desconocido
+4.39682639999955|Listo|ready|# ERR: comando desconocido
+4.41936890000215|Listo|ready|# ERR: comando desconocido
+4.44085350000387|Listo|ready|# ERR: comando desconocido
+4.46104300000297|Listo|ready|# ERR: comando desconocido
+4.48191130000487|Listo|ready|# ERR: comando desconocido
+4.50252639999962|Listo|ready|# ERR: comando desconocido
+4.52333250000083|Listo|ready|# ERR: comando desconocido
+4.54401579999831|Listo|ready|# ERR: comando desconocido
+4.56418829999893|Listo|ready|# ERR: comando desconocido
+4.58460420000483|Listo|ready|# ERR: comando desconocido
+4.60554820000107|Listo|ready|# ERR: comando desconocido
+4.62612079999963|Listo|ready|# ERR: comando desconocido
+4.64691490000405|Listo|ready|# ERR: comando desconocido
+4.66806360000191|Listo|ready|# ERR: comando desconocido
+4.68891630000144|Listo|ready|# ERR: comando desconocido
+4.7093223999982|Listo|ready|# ERR: comando desconocido
+4.7296783999991|Listo|ready|# ERR: comando desconocido
+4.75003809999907|Listo|ready|# ERR: comando desconocido
+4.77051980000397|Listo|ready|# ERR: comando desconocido
+4.79239750000124|Listo|ready|# ERR: comando desconocido
+4.81283270000131|Listo|ready|# ERR: comando desconocido
+4.83322610000323|Listo|ready|# ERR: comando desconocido
+4.85429790000489|Listo|ready|# ERR: comando desconocido
+4.87431240000296|Listo|ready|# ERR: comando desconocido
+4.89586699999927|Listo|ready|# ERR: comando desconocido
+4.91653229999793|Listo|ready|# ERR: comando desconocido
+4.93729960000201|Listo|ready|# ERR: comando desconocido
+4.9584457000019|Listo|ready|# ERR: comando desconocido
+4.9789413000035|Listo|ready|# ERR: comando desconocido
+4.99924550000287|Listo|ready|# ERR: comando desconocido
+5.01944480000384|Listo|ready|# ERR: comando desconocido
+5.04033809999964|Listo|ready|# ERR: comando desconocido
+5.06178780000482|Listo|ready|# ERR: comando desconocido
+5.08207599999878|Listo|ready|# ERR: comando desconocido
+5.10219830000278|Listo|ready|# ERR: comando desconocido
+5.1225143000047|Listo|ready|# ERR: comando desconocido
+5.14270620000025|Listo|ready|# ERR: comando desconocido
+5.16317210000125|Alineando|demo|# ERR: comando desconocido
+5.1840463999979|Alineando|demo|# ERR: comando desconocido
+5.20773650000046|Alineando|demo|# ERR: comando desconocido
+5.22885440000391|Alineando|demo|# ERR: comando desconocido
+5.2497371999998|Alineando|demo|# ERR: comando desconocido
+5.27290910000011|Alineando|demo|# ERR: comando desconocido
+5.29397410000092|Alineando|demo|# ERR: comando desconocido
+5.31505540000217|Alineando|demo|# ERR: comando desconocido
+5.33545430000231|Alineando|demo|# ERR: comando desconocido
+5.35589350000373|Alineando|demo|# ERR: comando desconocido
+5.37831920000463|Alineando|demo|# ERR: comando desconocido
+5.39862220000214|Alineando|demo|# ERR: comando desconocido
+5.41873620000115|Alineando|demo|# ERR: comando desconocido
+5.4401588000037|Alineando|demo|# ERR: comando desconocido
+5.46046930000011|Alineando|demo|# ERR: comando desconocido
+5.48048640000343|Alineando|demo|# ERR: comando desconocido
+5.5006343999994|Alineando|demo|# ERR: comando desconocido
+5.52086989999952|Alineando|demo|# ERR: comando desconocido
+5.54143730000214|Alineando|demo|# ERR: comando desconocido
+5.56152329999895|Alineando|demo|# ERR: comando desconocido
+5.58176629999798|Alineando|demo|# ERR: comando desconocido
+5.60224449999805|Alineando|demo|# ERR: comando desconocido
+5.62228060000052|Alineando|demo|# ERR: comando desconocido
+5.64513989999978|Alineando|demo|# ERR: comando desconocido
+5.66567100000248|Alineando|demo|# ERR: comando desconocido
+5.68642869999894|Alineando|demo|# ERR: comando desconocido
+5.70731019999948|Alineando|demo|# ERR: comando desconocido
+5.72749750000366|Alineando|demo|# ERR: comando desconocido
+5.74785880000127|Alineando|demo|# ERR: comando desconocido
+5.76868790000299|Alineando|demo|# ERR: comando desconocido
+5.78988799999934|Alineando|demo|# ERR: comando desconocido
+5.81024369999795|Alineando|demo|# ERR: comando desconocido
+5.83071930000006|Alineando|demo|# ERR: comando desconocido
+5.85139480000362|Alineando|demo|# ERR: comando desconocido
+5.87159560000146|Alineando|demo|# ERR: comando desconocido
+5.89231450000079|Alineando|demo|# ERR: comando desconocido
+5.91302510000241|Alineando|demo|# ERR: comando desconocido
+5.93345450000197|Alineando|demo|# ERR: comando desconocido
+5.9541132000013|Alineando|demo|# RX_SOURCE: usb=179 last=255 bt=0 last=-1
+5.97478540000156|Alineando|demo|# ERR: comando desconocido
+5.99871369999892|Alineando|demo|# ERR: comando desconocido
+6.02123440000287|Alineando|demo|# ERR: comando desconocido
+6.04197640000348|Alineando|demo|# ERR: comando desconocido
+6.06265379999968|Alineando|demo|# ERR: comando desconocido
+6.08310699999856|Alineando|demo|# ERR: comando desconocido
+6.10318370000459|Alineando|demo|# ERR: comando desconocido
+6.12650060000306|Alineando|demo|# ERR: comando desconocido
+6.14684890000353|Alineando|demo|# ERR: comando desconocido
+6.16741290000209|Alineando|demo|# ERR: comando desconocido
+6.18798550000065|Alineando|demo|# ERR: comando desconocido
+6.20813550000457|Alineando|demo|# ERR: comando desconocido
+6.22909120000259|Alineando|demo|# ERR: comando desconocido
+6.24989510000159|Alineando|demo|# ERR: comando desconocido
+6.27086530000088|Alineando|demo|# ERR: comando desconocido
+6.29208440000366|Alineando|demo|# ERR: comando desconocido
+6.31242770000244|Alineando|demo|# ERR: comando desconocido
+6.33310460000212|Alineando|demo|# ERR: comando desconocido
+6.35343519999878|Alineando|demo|# ERR: comando desconocido
+6.37415370000235|Alineando|demo|# ERR: comando desconocido
+6.39462890000141|Alineando|demo|# ERR: comando desconocido
+6.41492020000442|Alineando|demo|# ERR: comando desconocido
+6.43507420000242|Alineando|demo|# ERR: comando desconocido
+6.45587220000016|Alineando|demo|# ERR: comando desconocido
+6.47744120000425|Alineando|demo|# ERR: comando desconocido
+6.49787650000508|Alineando|demo|# ERR: comando desconocido
+6.51848880000034|Alineando|demo|# ERR: comando desconocido
+6.53906920000009|Alineando|demo|# ERR: comando desconocido
+6.55988620000426|Alineando|demo|# ERR: comando desconocido
+6.5802238000033|Alineando|demo|# ERR: comando desconocido
+6.60091439999815|Alineando|demo|# ERR: comando desconocido
+6.62091820000205|Alineando|demo|# ERR: comando desconocido
+6.64166040000418|Alineando|demo|# ERR: comando desconocido
+6.66195770000195|Alineando|demo|# ERR: comando desconocido
+6.68297680000251|Alineando|demo|# ERR: comando desconocido
+6.70415650000359|Alineando|demo|# ERR: comando desconocido
+6.724172000002|Alineando|demo|# ERR: comando desconocido
+6.74513280000247|Alineando|demo|# ERR: comando desconocido
+6.76516890000494|Alineando|demo|# ERR: comando desconocido
+6.7860548000026|Alineando|demo|# ERR: comando desconocido
+6.80725940000411|Alineando|demo|# ERR: comando desconocido
+6.82767800000147|Alineando|demo|# ERR: comando desconocido
+6.84795100000338|Alineando|demo|# ERR: comando desconocido
+6.86898500000098|Alineando|demo|# ERR: comando desconocido
+6.88957310000114|Alineando|demo|# ERR: comando desconocido
+6.91074170000502|Alineando|demo|# ERR: comando desconocido
+6.93194329999824|Alineando|demo|# ERR: comando desconocido
+6.952503600005|Alineando|demo|# ERR: comando desconocido
+6.97293480000371|Alineando|demo|# ERR: comando desconocido
+6.99410850000277|Alineando|demo|# ERR: comando desconocido
+7.01499219999823|Alineando|demo|# ERR: comando desconocido
+7.03598140000395|Alineando|demo|# ERR: comando desconocido
+7.05717220000224|Alineando|demo|# ERR: comando desconocido
+7.07733160000498|Alineando|demo|# ERR: comando desconocido
+7.09741729999951|Alineando|demo|# ERR: comando desconocido
+7.1185248000038|Alineando|demo|# ERR: comando desconocido
+7.13871130000189|Alineando|demo|# ERR: comando desconocido
+7.15993570000137|Alineando|demo|# ERR: comando desconocido
+7.1806990000041|Alineando|demo|# ERR: comando desconocido
+7.20114720000129|Alineando|demo|# ERR: comando desconocido
+7.22166680000373|Alineando|demo|# ERR: comando desconocido
+7.24203080000007|Alineando|demo|# ERR: comando desconocido
+7.26317830000335|Alineando|demo|# ERR: comando desconocido
+7.28425910000078|Alineando|demo|# ERR: comando desconocido
+7.30454989999998|Alineando|demo|# ERR: comando desconocido
+7.32581780000328|Alineando|demo|# ERR: comando desconocido
+7.34687090000079|Alineando|demo|# ERR: comando desconocido
+7.36821800000325|Alineando|demo|# ERR: comando desconocido
+7.38852559999941|Alineando|demo|# ERR: comando desconocido
+7.4086759999991|Alineando|demo|# ERR: comando desconocido
+7.42912190000061|Alineando|demo|# ERR: comando desconocido
+7.44978750000155|Alineando|demo|# ERR: comando desconocido
+7.46988889999921|Alineando|demo|# ERR: comando desconocido
+7.49051329999929|Alineando|demo|# ERR: comando desconocido
+7.51089850000426|Alineando|demo|# d: demo; c: reconectar; a: confirmar alineacion pendiente; r: diagnostico calibracion USB; g: diagnostico magnetometro USB; h: ayuda
+7.53281680000509|Alineando|demo|# ERR: comando desconocido
+7.55439670000487|Alineando|demo|# ERR: comando desconocido
+7.57587280000007|Alineando|demo|# ERR: comando desconocido
+7.59691800000292|Alineando|demo|# ERR: comando desconocido
+7.61835070000234|Alineando|demo|# ERR: comando desconocido
+7.63947639999969|Alineando|demo|# ERR: comando desconocido
+7.65978090000135|Alineando|demo|# ERR: comando desconocido
+7.68090060000395|Alineando|demo|# ERR: comando desconocido
+7.70278800000233|Alineando|demo|# ERR: comando desconocido
+7.72384900000179|Alineando|demo|# ERR: comando desconocido
+7.74482980000175|Alineando|demo|# ERR: comando desconocido
+7.76784050000424|Alineando|demo|# ERR: comando desconocido
+7.78831830000127|Alineando|demo|# ERR: comando desconocido
+7.8086717000042|Alineando|demo|# ERR: comando desconocido
+7.83006939999905|Alineando|demo|# ERR: comando desconocido
+7.85130429999845|Alineando|demo|# ERR: comando desconocido
+7.87290000000212|Alineando|demo|# ERR: comando desconocido
+7.893825500003|Alineando|demo|# ERR: comando desconocido
+7.91434319999826|Alineando|demo|# ERR: comando desconocido
+7.93613870000263|Alineando|demo|# ERR: comando desconocido
+7.9579350999993|Alineando|demo|# ERR: comando desconocido
+7.97972560000198|Alineando|demo|# ERR: comando desconocido
+8.00142600000254|Alineando|demo|# ERR: comando desconocido
+8.02219960000366|Alineando|demo|# ERR: comando desconocido
+8.04377709999972|Alineando|demo|# ERR: comando desconocido
+8.06552129999909|Alineando|demo|# ERR: comando desconocido
+8.0858864000038|Alineando|demo|# ERR: comando desconocido
+8.10589630000322|Alineando|demo|# ERR: comando desconocido
+8.12802329999977|Alineando|demo|# ERR: comando desconocido
+8.14902570000413|Alineando|demo|# ERR: comando desconocido
+8.17094070000167|Alineando|demo|# ERR: comando desconocido
+8.19188820000272|Alineando|demo|# ERR: comando desconocido
+8.21208409999963|Alineando|demo|# ERR: comando desconocido
+8.23408149999887|Alineando|demo|# ERR: comando desconocido
+8.25595930000418|Alineando|demo|# ERR: comando desconocido
+8.27631780000229|Alineando|demo|# ERR: comando desconocido
+8.29709820000426|Alineando|demo|# ERR: comando desconocido
+8.31731910000235|Alineando|demo|# ERR: comando desconocido
+8.338370700003|Alineando|demo|# ERR: comando desconocido
+8.35885010000493|Alineando|demo|# ERR: comando desconocido
+8.3799852000011|Alineando|demo|# ERR: comando desconocido
+8.40101950000098|Alineando|demo|# ERR: comando desconocido
+8.42241930000455|Alineando|demo|# ERR: comando desconocido
+8.44271660000231|Alineando|demo|# ERR: comando desconocido
+8.46366600000329|Alineando|demo|# ERR: comando desconocido
+8.48369900000398|Alineando|demo|# ERR: comando desconocido
+8.50373219999892|Alineando|demo|# ERR: comando desconocido
+8.52379849999852|Alineando|demo|# ERR: comando desconocido
+8.54430909999792|Alineando|demo|# ERR: comando desconocido
+8.56484500000079|Alineando|demo|# ERR: comando desconocido
+8.58551660000376|Alineando|demo|# ERR: comando desconocido
+8.60635780000302|Alineando|demo|# ERR: comando desconocido
+8.62687200000073|Alineando|demo|# ERR: comando desconocido
+8.65049870000075|Alineando|demo|# ERR: comando desconocido
+8.6716624000037|Alineando|demo|# ERR: comando desconocido
+8.69170129999839|Alineando|demo|# ERR: comando desconocido
+8.71212920000107|Alineando|demo|# ERR: comando desconocido
+8.73322090000147|Alineando|demo|# ERR: comando desconocido
+8.75415420000354|Alineando|demo|# ERR: comando desconocido
+8.77567020000424|Alineando|demo|# ERR: comando desconocido
+8.79708889999893|Alineando|demo|# ERR: comando desconocido
+8.8171880000009|Alineando|demo|# ERR: comando desconocido
+8.83754100000078|Alineando|demo|# ERR: comando desconocido
+8.86035809999885|Alineando|demo|# ERR: comando desconocido
+8.88083470000129|Alineando|demo|# ERR: comando desconocido
+8.90100560000428|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+8.92118910000136|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+8.9423209000015|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+8.96276149999903|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+8.98305139999866|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.00401520000014|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.02488090000406|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.04593140000361|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.06679090000398|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.08713020000141|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.10777100000269|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.12842800000362|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.14970360000007|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.1716751999993|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.19253980000212|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.21265729999868|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.2327340999982|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.25386170000274|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.27423590000399|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.29453070000454|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.31520540000201|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.33561320000445|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.3566512000034|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.37886560000334|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.3989234000037|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.42074069999944|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.44084229999862|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.46416650000174|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.48593020000408|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.50604639999801|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.52696890000516|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.54822419999982|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.56955659999949|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.59092700000474|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.61145499999839|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.63217509999959|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.65390869999828|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.67504380000173|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.69589129999804|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.71602580000035|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.73736680000002|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.75793179999891|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.77845859999798|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.80050820000179|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.82100889999856|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.84103500000492|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.86214420000033|Alineando|demo|# RX_SOURCE: usb=176 last=254 bt=0 last=-1
+9.88286520000111|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+9.90295550000155|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+9.92300550000073|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+9.94392650000373|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+9.96477790000063|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+9.98494010000286|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.0049964999998|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.0267058000027|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.0469924999998|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.0683978000015|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.0898882000038|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.1108708000029|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.132583700004|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.153796300001|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.1749032000007|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.1968287999989|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.2174575000026|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.2375509999983|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.2590503000029|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.2798758999998|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.3009739000045|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.3215952000028|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.3422795000006|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.3627597000013|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.3839693000045|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.4041299000019|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.4246817000021|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.4458095000009|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.4677825000035|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.4880644000004|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.5084037000051|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.5296311999991|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.5497409000018|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.5710034000003|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.5918071000051|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.6131098000042|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.6338608000005|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.6538864000031|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.6750993000023|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.6966036000013|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.7182451000044|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.7388418000046|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.7600523000001|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.7806029999992|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.8009488000025|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.8217832000009|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.8419189999986|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.8631481999982|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.8835951000001|Alineando|demo|# RX_SOURCE: usb=0 last=-1 bt=0 last=-1
+10.9050476000048|Alineando|demo|# ERR: comando desconocido
+10.925061599999|Alineando|demo|# ERR: comando desconocido
+10.9451449000044|Alineando|demo|# AWAITING_ALIGNMENT: esperando confirmacion o BYPASS_ALIGNMENT
+10.9659933000003|Calibrando|calibrating|# ERR: comando desconocido
+10.9863241999992|Calibrando|calibrating|# ERR: comando desconocido
+11.0075142999995|Calibrando|calibrating|# ERR: comando desconocido
+11.0278571000017|Calibrando|calibrating|# ERR: comando desconocido
+11.0493969000017|Calibrando|calibrating|# ERR: comando desconocido
+11.070003300003|Calibrando|calibrating|# ERR: comando desconocido
+11.0906164000044|Calibrando|calibrating|# ERR: comando desconocido
+11.1117395000038|Calibrando|calibrating|# ERR: comando desconocido
+11.1320785999997|Calibrando|calibrating|# ERR: comando desconocido
+11.153670700005|Calibrando|calibrating|# ERR: comando desconocido
+11.1763309000016|Calibrando|calibrating|# ERR: comando desconocido
+11.1967041000025|Calibrando|calibrating|# ERR: comando desconocido
+11.2179046000019|Calibrando|calibrating|# ERR: comando desconocido
+11.2392502000002|Calibrando|calibrating|# ERR: comando desconocido
+11.2603686000002|Calibrando|calibrating|# ERR: comando desconocido
+11.2804446000009|Calibrando|calibrating|# ERR: comando desconocido
+11.3005950000006|Calibrando|calibrating|# ERR: comando desconocido
+11.3217058000009|Calibrando|calibrating|# ERR: comando desconocido
+11.3418334000016|Calibrando|calibrating|# ERR: comando desconocido
+11.3626399999994|Calibrando|calibrating|# ERR: comando desconocido
+11.3831070000015|Calibrando|calibrating|# ERR: comando desconocido
+11.4040167999992|Calibrando|calibrating|# ERR: comando desconocido
+11.4271016999992|Calibrando|calibrating|# ERR: comando desconocido
+11.4473849999995|Calibrando|calibrating|# ERR: comando desconocido
+11.4686090000032|Calibrando|calibrating|# ERR: comando desconocido
+11.4892982000019|Calibrando|calibrating|# ERR: comando desconocido
+11.5099441999992|Calibrando|calibrating|# ERR: comando desconocido
+11.5304724000016|Calibrando|calibrating|# ERR: comando desconocido
+11.5513017000048|Calibrando|calibrating|# ERR: comando desconocido
+11.5724429000038|Calibrando|calibrating|# ERR: comando desconocido
+11.5929400000023|Calibrando|calibrating|# ERR: comando desconocido
+11.6146093999996|Calibrando|calibrating|# ERR: comando desconocido
+11.6355129000003|Calibrando|calibrating|# ERR: comando desconocido
+11.6562615000003|Calibrando|calibrating|# ERR: comando desconocido
+11.6771903000044|Calibrando|calibrating|# ERR: comando desconocido
+11.6978940000045|Calibrando|calibrating|# ERR: comando desconocido
+11.7185887000014|Calibrando|calibrating|# ERR: comando desconocido
+11.7388343999992|Calibrando|calibrating|# ERR: comando desconocido
+11.7594972000006|Calibrando|calibrating|# ERR: comando desconocido
+11.7797398000039|Calibrando|calibrating|# ERR: comando desconocido
+11.8006157999989|Calibrando|calibrating|# ERR: comando desconocido
+11.8214960000041|Calibrando|calibrating|# ERR: comando desconocido
+11.8424937000018|Calibrando|calibrating|# ERR: comando desconocido
+11.8633692000003|Calibrando|calibrating|# ERR: comando desconocido
+11.8837329000016|Calibrando|calibrating|# ERR: comando desconocido
+11.9048207000014|Calibrando|calibrating|# ERR: comando desconocido
+11.9260176000025|Calibrando|calibrating|# ERR: comando desconocido
+11.9461215000047|Calibrando|calibrating|# ERR: comando desconocido
+11.967318300005|Calibrando|calibrating|# ERR: comando desconocido
+11.9888156000015|Calibrando|calibrating|# ERR: comando desconocido
+12.0092511000039|Calibrando|calibrating|# ERR: comando desconocido
+12.0303668000051|Calibrando|calibrating|# ERR: comando desconocido
+12.0508879999979|Calibrando|calibrating|# ERR: comando desconocido
+12.0708981999996|Calibrando|calibrating|# ERR: comando desconocido
+12.0921992000003|Calibrando|calibrating|# ERR: comando desconocido
+12.1125595000049|Calibrando|calibrating|# ERR: comando desconocido
+12.1329715000029|Calibrando|calibrating|# ERR: comando desconocido
+12.1531041999988|Calibrando|calibrating|# ERR: comando desconocido
+12.174167600002|Calibrando|calibrating|# ERR: comando desconocido
+12.1946124000024|Calibrando|calibrating|# ERR: comando desconocido
+12.2154478000011|Calibrando|calibrating|# ERR: comando desconocido
+12.2364224000048|Calibrando|calibrating|# ERR: comando desconocido
+12.2574324000016|Calibrando|calibrating|# ERR: comando desconocido
+12.2783752000032|Calibrando|calibrating|# ERR: comando desconocido
+12.2992486000003|Calibrando|calibrating|# ERR: comando desconocido
+12.3195914000025|Calibrando|calibrating|# ERR: comando desconocido
+12.3401236999998|Calibrando|calibrating|# ERR: comando desconocido
+12.3631236000001|Calibrando|calibrating|# ERR: comando desconocido
+12.3843133000046|Calibrando|calibrating|# ERR: comando desconocido
+12.4054135000042|Calibrando|calibrating|# ERR: comando desconocido
+12.4255115999986|Calibrando|calibrating|# ERR: comando desconocido
+12.4467293999987|Calibrando|calibrating|# ERR: comando desconocido
+12.4677551999994|Calibrando|calibrating|# ERR: comando desconocido
+12.4878660000031|Calibrando|calibrating|# ERR: comando desconocido
+12.5081491000019|Calibrando|calibrating|# ERR: comando desconocido
+12.5283454000019|Calibrando|calibrating|# ERR: comando desconocido
+12.5490031000008|Calibrando|calibrating|# ERR: comando desconocido
+12.5692249999993|Calibrando|calibrating|# ERR: comando desconocido
+12.5897094000029|Calibrando|calibrating|# ERR: comando desconocido
+12.6108505000011|Calibrando|calibrating|# ERR: comando desconocido
+12.6309993000032|Calibrando|calibrating|# ERR: comando desconocido
+12.6514489000037|Calibrando|calibrating|# ERR: comando desconocido
+12.6748140999989|Calibrando|calibrating|# ERR: comando desconocido
+12.6956321000034|Calibrando|calibrating|# ERR: comando desconocido
+12.7163863000023|Calibrando|calibrating|# ERR: comando desconocido
+12.7381209000014|Calibrando|calibrating|# ERR: comando desconocido
+12.7587476999979|Calibrando|calibrating|# ERR: comando desconocido
+12.7788965|Calibrando|calibrating|# ERR: comando desconocido
+12.7998484999989|Calibrando|calibrating|# ERR: comando desconocido
+12.8203980000035|Calibrando|calibrating|# ERR: comando desconocido
+12.8410680000015|Calibrando|calibrating|# ERR: comando desconocido
+12.8612293000042|Calibrando|calibrating|# ERR: comando desconocido
+12.8818633000046|Calibrando|calibrating|# ERR: comando desconocido
+12.9025583000039|Calibrando|calibrating|# ERR: comando desconocido
+12.9229792000042|Calibrando|calibrating|# ERR: comando desconocido
+12.9441927000007|Calibrando|calibrating|# ERR: comando desconocido
+12.9655112000037|Calibrando|calibrating|# ERR: comando desconocido
+12.9861498000027|Calibrando|calibrating|# ERR: comando desconocido
+13.0070354999989|Calibrando|calibrating|# ERR: a requiere awaiting_alignment
+13.0279720000035|Calibrando|calibrating|# ERR: comando desconocido
+13.0492989999984|Calibrando|calibrating|# ERR: comando desconocido
+13.0696650000027|Calibrando|calibrating|# ERR: comando desconocido
+13.0901343000005|Calibrando|calibrating|# ERR: comando desconocido
+13.1113674000007|Calibrando|calibrating|# ERR: comando desconocido
+13.1324153000023|Calibrando|calibrating|# ERR: comando desconocido
+13.1526595000032|Calibrando|calibrating|# ERR: comando desconocido
+13.1738721000002|Calibrando|calibrating|# ERR: comando desconocido
+13.1944952000049|Calibrando|calibrating|# ERR: comando desconocido
+13.2148462000041|Calibrando|calibrating|# ERR: comando desconocido
+13.2359874000031|Calibrando|calibrating|# ERR: comando desconocido
+13.2561910000004|Calibrando|calibrating|# ERR: comando desconocido
+13.2771546000004|Calibrando|calibrating|# ERR: comando desconocido
+13.2971962000011|Calibrando|calibrating|# ERR: comando desconocido
+13.3184760000004|Calibrando|calibrating|# ERR: comando desconocido
+13.3393318000017|Calibrando|calibrating|# ERR: comando desconocido
+13.3599689000039|Calibrando|calibrating|# ERR: comando desconocido
+13.3800386000003|Calibrando|calibrating|# ERR: comando desconocido
+13.4003354000015|Calibrando|calibrating|# ERR: comando desconocido
+13.4212247000032|Calibrando|calibrating|# ERR: comando desconocido
+13.4417547999983|Calibrando|calibrating|# ERR: comando desconocido
+13.4623850999997|Calibrando|calibrating|# ERR: comando desconocido
+13.4832277000023|Calibrando|calibrating|# ERR: comando desconocido
+13.5034288000024|Calibrando|calibrating|# ERR: comando desconocido
+13.5234402999995|Calibrando|calibrating|# ERR: comando desconocido
+13.5442485000021|Calibrando|calibrating|# ERR: comando desconocido
+13.5649083000026|Calibrando|calibrating|# ERR: comando desconocido
+13.5861371999999|Calibrando|calibrating|# ERR: comando desconocido
+13.6063599999979|Calibrando|calibrating|# ERR: comando desconocido
+13.6277592000042|Calibrando|calibrating|# ERR: comando desconocido
+13.6490812999982|Calibrando|calibrating|# ERR: comando desconocido
+13.6698117999986|Calibrando|calibrating|# ERR: comando desconocido
+13.6906243999983|Calibrando|calibrating|# ERR: comando desconocido
+13.7109710000004|Calibrando|calibrating|# ERR: comando desconocido
+13.7318559999985|Calibrando|calibrating|# ERR: comando desconocido
+13.7530553000033|Calibrando|calibrating|# ERR: comando desconocido
+13.7732336999979|Calibrando|calibrating|# ERR: comando desconocido
+13.7951391000024|Calibrando|calibrating|# ERR: comando desconocido
+13.8163149000029|Calibrando|calibrating|# ERR: comando desconocido
+13.8365172999984|Calibrando|calibrating|# ERR: comando desconocido
+13.8572734000045|Calibrando|calibrating|# ERR: comando desconocido
+13.8773457999996|Calibrando|calibrating|# ERR: comando desconocido
+13.8977634000039|Calibrando|calibrating|# ERR: comando desconocido
+13.9185971000043|Calibrando|calibrating|# ERR: comando desconocido
+13.9394898000028|Calibrando|calibrating|# ERR: comando desconocido
+13.9601513000016|Calibrando|calibrating|# RX_SOURCE: usb=172 last=241 bt=0 last=-1
+13.9805750000014|Calibrando|calibrating|# ERR: comando desconocido
+14.0009101000032|Calibrando|calibrating|# ERR: comando desconocido
+14.0213002000019|Calibrando|calibrating|# ERR: comando desconocido
+14.0413627000016|Calibrando|calibrating|# ERR: comando desconocido
+14.0615973000022|Calibrando|calibrating|# ERR: comando desconocido
+14.0826868000004|Calibrando|calibrating|# ERR: comando desconocido
+14.1033337999979|Calibrando|calibrating|# ERR: comando desconocido
+14.1245679999993|Calibrando|calibrating|# ERR: comando desconocido
+14.1459985000038|Calibrando|calibrating|# ERR: comando desconocido
+14.1666150000019|Calibrando|calibrating|# ERR: comando desconocido
+14.1878787000023|Calibrando|calibrating|# ERR: comando desconocido
+14.208022800005|Calibrando|calibrating|# ERR: comando desconocido
+14.2286620000013|Calibrando|calibrating|# ERR: comando desconocido
+14.2492225000024|Calibrando|calibrating|# ERR: comando desconocido
+14.2692729999981|Calibrando|calibrating|# ERR: comando desconocido
+14.2899355000045|Calibrando|calibrating|# ERR: comando desconocido
+14.3105932000035|Calibrando|calibrating|# ERR: comando desconocido
+14.3310506999987|Calibrando|calibrating|# ERR: comando desconocido
+14.3514454000033|Calibrando|calibrating|# ERR: comando desconocido
+14.3721848999994|Calibrando|calibrating|# ERR: comando desconocido
+14.3929594000001|Calibrando|calibrating|# ERR: comando desconocido
+14.4136338000026|Calibrando|calibrating|# ERR: comando desconocido
+14.433653|Calibrando|calibrating|# ERR: comando desconocido
+14.4544070000047|Calibrando|calibrating|# ERR: comando desconocido
+14.4746318000034|Calibrando|calibrating|# ERR: comando desconocido
+14.4979139999996|Calibrando|calibrating|# ERR: comando desconocido
+14.5186783000026|Calibrando|calibrating|# ERR: comando desconocido
+14.5393947000048|Calibrando|calibrating|# ERR: comando desconocido
+14.5603944000031|Calibrando|calibrating|# ERR: comando desconocido
+14.5807313000041|Listo|ready|# ERR: comando desconocido
+14.602927699998|Listo|ready|# ERR: comando desconocido
+14.6232485|Listo|ready|# ERR: comando desconocido
+14.6434264999989|Listo|ready|# ERR: comando desconocido
+14.6639925999989|Listo|ready|# ERR: comando desconocido
+14.6858055999983|Listo|ready|# ERR: comando desconocido
+14.7059949000031|Listo|ready|# ERR: comando desconocido
+14.7295241000029|Listo|ready|# ERR: comando desconocido
+14.7499198000005|Listo|ready|# ERR: comando desconocido
+14.7700343000033|Listo|ready|# ERR: comando desconocido
+14.7935843000014|Listo|ready|# ERR: comando desconocido
+14.816851399999|Listo|ready|# ERR: comando desconocido
+14.8373730000021|Listo|ready|# ERR: comando desconocido
+14.8578189000036|Listo|ready|# ERR: comando desconocido
+14.8784164000026|Listo|ready|# ERR: comando desconocido
+14.9001396000021|Listo|ready|# ERR: comando desconocido
+14.9225347000029|Listo|ready|# ERR: comando desconocido
+14.943786200005|Listo|ready|# ERR: comando desconocido
+14.9648787000042|Listo|ready|# RX_SOURCE: usb=167 last=255 bt=0 last=-1
+14.9873826000039|Alineando|demo|# ERR: comando desconocido
+15.0075587000028|Alineando|demo|# ERR: comando desconocido

@@ -1,0 +1,30 @@
+{
+  "orientation_bins": 319,
+  "training_samples": 223,
+  "train_vector_rms_uT": 3.413786035538998,
+  "heldout_vector_rms_uT": 4.411111303368449,
+  "constant_field_baseline_heldout_rms_uT": 20.866862631817,
+  "affine_condition": 1.286086844954071,
+  "bias_diagnostic_only": [
+    -59.62555389841342,
+    10.24830715795563,
+    -14.133910061938792
+  ],
+  "stationary_samples": 74,
+  "stationary_mean_uT": [
+    -65.16827027027027,
+    -0.6283783783783784,
+    1.6098378378378368
+  ],
+  "stationary_std_uT": [
+    0.8178750366667449,
+    0.9472963334228047,
+    0.8438249150249985
+  ],
+  "stationary_span_uT": [
+    3.7730000000000032,
+    4.5,
+    4.3309999999999995
+  ],
+  "note": "Diagnostic affine fit only. Not a validated calibration; not installed in firmware."
+}
