@@ -68,6 +68,8 @@ void updateMagneticHeading(ball::Vec gyro) {
 }
 ball::TwistGesture twist;
 uint32_t interactionSequence=0; // Cumulative per boot, never reset by calibration.
+// Counts calibrate() calls per boot: Unity keeps its reference only while it is unchanged.
+uint32_t calibrationSequence=0;
 float verticalAngularVelocity=0;
 ball::Vec bias, sum, accelSum;
 ball::Output output;
@@ -135,6 +137,7 @@ SampleResult readSample(ball::Vec &accel, ball::Vec &gyro) {
          std::abs(int(decodeInt16(12)))<32700 ? SampleResult::Ok : SampleResult::GyroSaturated;
 }
 void calibrate() {
+  ++calibrationSequence; // Ready is only reachable through here.
   resetMagneticReference();
   alineadoEnUnity=false; // Consume confirmation; do not reuse it after a fault.
   mode=Mode::Calibrating; calibrationCount=0; sum={}; accelSum={}; output={}; motion.reset();
@@ -191,7 +194,7 @@ void setup() {
   Wire.begin(SDA_PIN,SCL_PIN); Wire.setClock(100000); Wire.setTimeOut(20);
   connectMagnetometer();
   transport.send("# Kyuboru v1. Comandos: d demo, c reconectar, a confirmar alineacion, h ayuda\n");
-  Serial.println("# CSV: K3,millis,status,right,forward,qw,qx,qy,qz,vertical_rad_s,interaction_sequence");
+  Serial.println("# CSV: K4,millis,status,right,forward,qw,qx,qy,qz,vertical_rad_s,interaction_sequence,calibration_sequence");
   if (!connectSensor()) waitForSensor("MPU6050 ausente; salida cero. d inicia demo sin sensor");
   lastSample=micros();
 }
@@ -335,9 +338,10 @@ void loop() {
     lastOutput=millis();
     const ball::Quat &q=motion.orientation;
     char line[192];
-    snprintf(line,sizeof(line),"K3,%lu,%s,%.4f,%.4f,%.6f,%.6f,%.6f,%.6f,%.4f,%lu\n",
+    snprintf(line,sizeof(line),"K4,%lu,%s,%.4f,%.4f,%.6f,%.6f,%.6f,%.6f,%.4f,%lu,%lu\n",
                   static_cast<unsigned long>(lastOutput),status(),output.right,output.forward,
-                  q.w,q.x,q.y,q.z,verticalAngularVelocity,static_cast<unsigned long>(interactionSequence));
+                  q.w,q.x,q.y,q.z,verticalAngularVelocity,static_cast<unsigned long>(interactionSequence),
+                  static_cast<unsigned long>(calibrationSequence));
     transport.send(line,true);
   }
   // Separate backwards-compatible diagnostic; K3 movement format is unchanged.
