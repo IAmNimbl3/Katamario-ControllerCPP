@@ -34,24 +34,34 @@ class Packet:
     right: float
     forward: float
     q: tuple
+    vertical_rad_s: float = 0.0
+    interaction_sequence: int = 0
+    calibration_sequence: object = None
 
 
 def parse(line):
-    if not line.startswith('K2,'):
+    if not line.startswith(('K2,', 'K3,', 'K4,')):
         return None
     fields = line.split(',')
-    if len(fields) != 9:
+    if len(fields) != {'K2': 9, 'K3': 11, 'K4': 12}[fields[0]]:
         raise ValueError('field count')
     tick = int(fields[1])
     status = fields[2]
-    values = tuple(map(float, fields[3:]))
+    values = tuple(map(float, fields[3:9]))
     if not 0 <= tick <= 0xffffffff or status not in {'waiting', 'awaiting_alignment', 'calibrating', 'ready', 'demo'}:
         raise ValueError('timestamp/status')
     if not all(math.isfinite(v) for v in values):
         raise ValueError('nonfinite')
     if math.hypot(*values[:2]) > 1.001 or abs(sum(v*v for v in values[2:])-1) > .005:
         raise ValueError('movement/quaternion range')
-    return Packet(tick, status, *values[:2], values[2:])
+    vertical = float(fields[9]) if len(fields) >= 11 else 0.0
+    sequence = int(fields[10]) if len(fields) >= 11 else 0
+    calibration = int(fields[11]) if len(fields) == 12 else None
+    if not math.isfinite(vertical) or not 0 <= sequence <= 0xffffffff:
+        raise ValueError('interaction fields')
+    if calibration is not None and not 0 <= calibration <= 0xffffffff:
+        raise ValueError('calibration sequence')
+    return Packet(tick, status, *values[:2], values[2:], vertical, sequence, calibration)
 
 
 class Receiver:

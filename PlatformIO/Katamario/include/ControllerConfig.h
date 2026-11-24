@@ -7,7 +7,7 @@ namespace config {
 // The mounted ball rests wherever its weight settles it; only near upside down
 // is the gravity-to-up rotation ill-defined.
 constexpr float CALIBRATION_MAX_TILT_DEG = 60.0f;
-// Out-of-range samples (knocks, floor vibration) are skipped, not restarted.
+// Invalid acceleration restarts the continuous stillness window.
 constexpr float CALIBRATION_MIN_ACCEL_G = 0.80f;
 constexpr float CALIBRATION_MAX_ACCEL_G = 1.20f;
 // Raw gyro ceiling: the MPU6050 zero-rate offset alone may reach 20 deg/s, and it

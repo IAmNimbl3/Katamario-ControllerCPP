@@ -12,12 +12,12 @@ El 14/10/2026 se cargó y validó la demo sin sensor en el ESP32 por COM4: dos c
 
 El firmware ya incorpora Bluetooth clásico SPP bajo el nombre `Kyuboru` y un receptor de prueba independiente de Unity. Con Bluetooth inicializado, la demo volvió a pasar por USB: dos ciclos, 1650 paquetes y cadencia de 20 ms. [Resultados](output/tests/2026-10-14-bluetooth-usb/result.json). El receptor pasó cinco pruebas automatizadas de lectura y timeout.
 
-La conexión inalámbrica real sigue pendiente: el adaptador Bluetooth de Windows presenta un error de dispositivo. Se probará con Android. También faltan la integración con Unity, la validación del MPU6050 y el montaje real. Marcas de frente y arriba permitirán alinear físicamente la pelota antes de confirmar su referencia.
+Bluetooth, MPU6050, magnetómetro e integración Unity ya se probaron con el controlador. La marca física define el adelante inicial y el magnetómetro ayuda a conservarlo. El firmware actual emite K4. Los registros anteriores se conservan como evidencia histórica.
 
 ## Documentación
 
 Integración opcional del AK09911C: [magnetómetro y corrección de rumbo](docs/Magnetometro.md).
-Preparada en código, desactivada por defecto y pendiente de calibración y prueba física.
+Habilitada para el montaje calibrado: corrección suave tras 2,5 segundos de baja velocidad y campo estable.
 
 Descripción del concepto: [Kyuboru: el juego](output/pdf/05_Descripcion_del_Juego.pdf).
 
@@ -30,6 +30,6 @@ Documentación PDF, con referencias cruzadas:
 - [Integración: usos de BallMotion desde Main](output/pdf/03_Integracion_Main_BallMotion.pdf)
 - [Flujo de uso y bocetos del control](output/pdf/04_Flujo_Uso_y_Bocetos.pdf)
 
-## Próximo paso acordado
+## Verificación actual
 
-**Probar el enlace Bluetooth con Android cuando el usuario vuelva.** La demo sin sensor ya fue probada por USB. Después se conectará y validará el MPU6050; Unity requiere el repositorio del juego. El documento de Integración, página 2, conserva el procedimiento anterior a estas pruebas.
+Las nuevas tolerancias y la continuidad de calibración requieren prueba física cuando se disponga del controlador. Compilar no actualiza la placa: hay que cargar el firmware. Los PDF históricos se conservan sin modificar; consultar los Markdown de comunicación y magnetómetro para la especificación vigente.

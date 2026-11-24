@@ -8,6 +8,15 @@ GOOD = b'K2,123,demo,0.2,0.3,1,0,0,0\n'
 
 
 class ReceiverTests(unittest.TestCase):
+    def test_k3_k4(self):
+        for version, tail in [('K3', ',0.1,7'), ('K4', ',0.1,7,2')]:
+            p = parse(version + ',123,ready,0.2,0.3,1,0,0,0' + tail)
+            self.assertEqual(p.interaction_sequence, 7)
+            self.assertEqual(p.calibration_sequence, 2 if version == 'K4' else None)
+        for tail in [',0.1,7', ',nan,7,2', ',0.1,7,-1', ',0.1,7,4294967296']:
+            with self.assertRaises(ValueError):
+                parse('K4,123,ready,0,0,1,0,0,0' + tail)
+
     def test_fragmented_and_combined(self):
         r = Receiver()
         r.feed(GOOD[:15], 0)

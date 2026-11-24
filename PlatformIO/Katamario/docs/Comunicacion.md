@@ -6,9 +6,13 @@ El firmware ofrece la misma telemetría por USB y Bluetooth clásico SPP. El rec
 
 Cada línea de datos termina en LF y conserva el formato de la demo:
 
-`K2,millis,status,right,forward,qw,qx,qy,qz`
+`K4,millis,status,right,forward,qw,qx,qy,qz,vertical_rad_s,interaction_sequence,calibration_sequence`
 
-`millis` es el tiempo desde el arranque del ESP32, no una fecha. Se reinicia al reiniciar la placa y desborda a los 49,7 días. `right` y `forward` son órdenes normalizadas, no posiciones. El cuaternión se transmite en orden w, x, y, z, con la referencia X derecha, Y adelante, Z arriba. La adaptación al sistema de coordenadas de Unity sigue pendiente.
+K2 conserva los primeros nueve campos; K3 agrega velocidad vertical y contador de interacción. El receptor de banco acepta K2, K3 y K4. `calibration_sequence` cuenta inicios de calibración completa por arranque; no indica finalización y no aumenta con la corrección magnética suave. Esperar `ready` para usar la nueva referencia. Un reinicio de placa reinicia los contadores; el contador no identifica una sesión por sí solo.
+
+`# MAGSTATE,millis,1` confirma una corrección magnética reciente; `0` indica que no hubo corrección en ese intervalo. Es independiente del contador K4 y se publica cada 200 ms.
+
+`millis` es el tiempo desde el arranque del ESP32, no una fecha. Se reinicia al reiniciar la placa y desborda a los 49,7 días. `right` y `forward` son órdenes normalizadas, no posiciones. El cuaternión se transmite en orden w, x, y, z, con la referencia X derecha, Y adelante, Z arriba. Unity realiza la adaptación de ejes en el repositorio del juego.
 
 Los estados son `waiting`, `awaiting_alignment`, `calibrating`, `ready` y `demo`. Sólo `ready` y `demo` habilitan movimiento en el receptor. Las líneas que empiezan por `#` son mensajes de diagnóstico o respuesta, no datos de movimiento.
 
@@ -19,7 +23,7 @@ Los comandos de banco son caracteres individuales, en minúscula. Se ignoran CR 
 - `a`: confirmar alineación únicamente en `awaiting_alignment`; en otro estado devuelve un error.
 - `h`: consultar ayuda.
 
-`BYPASS_ALIGNMENT` continúa en `true`, por lo que la confirmación manual no es obligatoria todavía. La calibración real y su confirmación requieren una prueba posterior con sensor. Los dos transportes comparten comandos y estado: usar un solo cliente de control para evitar órdenes contradictorias.
+`BYPASS_ALIGNMENT` continúa en `true`, por lo que la confirmación manual no es obligatoria todavía. La calibración completa requiere 300 muestras válidas consecutivas; cualquier intervalo mayor de 50 ms reinicia la ventana. Los dos transportes comparten comandos y estado: usar un solo cliente de control para evitar órdenes contradictorias.
 
 ## Receptor de Windows
 
@@ -43,6 +47,6 @@ En Windows, cuando el adaptador funcione, seleccionar el puerto COM saliente del
 
 El envío Bluetooth se ejecuta en una tarea separada. Una cola de una muestra conserva la telemetría más reciente; otra cola acotada contiene respuestas. La aplicación evita acumular telemetría sin límite, pero la biblioteca y el sistema operativo también tienen buffers: la latencia real y la reconexión se deben medir por radio.
 
-No hay identificadores de órdenes, confirmaciones fiables con reintentos, receptor Unity ni conversión de ejes del engine. No se modificó la matemática de BallMotion. La acción vertical sigue siendo un placeholder. Los manuales PDF preceden a esta ampliación y no se actualizaron.
+No hay identificadores de órdenes ni autenticación adicional. La integración Unity y la interacción por retorcimiento existen en el repositorio del juego. Los PDF históricos preceden a estas ampliaciones; consultar este documento para el protocolo actual.
 
 Referencias del transporte: [BluetoothSerial de Espressif](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/bluetooth.html) y [Bluetooth clásico en Android](https://developer.android.com/develop/connectivity/bluetooth).

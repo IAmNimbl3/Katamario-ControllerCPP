@@ -2,7 +2,7 @@
 
 Estado (2026-11-10): driver verificado en la placa y correccion provisional
 habilitada en `MagnetometerConfig.h`. Ambos sensores permanecen fijos entre si.
-No sustituye al MPU6050 ni cambia el CSV K3 de Unity.
+No sustituye al MPU6050. El firmware actual emite K4; la corrección magnética no modifica la estructura de sus campos.
 
 La calibracion provisional proviene de `output/tests/2026-11-10-magnetometer/`:
 ajuste afin conjunto contra la orientacion del MPU, con descomposicion polar
@@ -55,7 +55,7 @@ la pantalla automáticamente. La corrección se aplica antes de la integración 
 del ciclo; usa su estimación de orientación previa (desfase de un ciclo, limitado
 por la condición de reposo). La salida y el cuaternión enviados son del mismo ciclo.
 
-Solo corrige con giro <=0,15 rad/s, muestras separadas por <=50 ms, campo de
+Solo corrige con giro <=0,25 rad/s, muestras separadas por <=50 ms, campo de
 10..100 uT y componente horizontal >=5 uT. Rechaza cambios de magnitud >20%
 respecto de la referencia o errores de rumbo >45 grados. Ganancia 0,5/s,
 corrección máxima 0,05 rad/s. Valores iniciales para medir en banco.
@@ -84,9 +84,8 @@ seguir siendo indistinguible de error de rumbo; no es una garantía de alineaci�
 ### Responsabilidad de Unity
 
 El ESP32 combina los sensores y corrige su estimación física antes de calcular
-movimiento y emitir K3. Unity recibe `right`, `forward` y el cuaternión ya
-corregidos: no debe aplicar una segunda corrección magnética. No hace falta
-cambiar el receptor K3 ni enviar el campo magnético para este comportamiento.
+movimiento y emitir K4. Unity recibe `right`, `forward` y el cuaternión ya
+corregidos: no debe aplicar una segunda corrección magnética. El receptor debe aceptar K4; no necesita el campo magnético ni una segunda corrección.
 La referencia visual del nivel, UI y decisiones de juego pertenecen a Unity.
 No se agregó persistencia de referencia entre reinicios ni se cambió el flujo
 actual de `c`: ese comando sigue solicitando una calibración explícita nueva.
@@ -106,7 +105,7 @@ no provoca Ready ni reemplaza las condiciones de calibración del MPU.
 Si un fallo físico retiene el bus compartido, también puede fallar el MPU: se
 mantiene la protección existente de pausa/recalibración, no se puede aislar por software.
 
-`# MAG,ms,result,state,mx_uT,my_uT,mz_uT` (solo USB; no cambia K3):
+`# MAG,ms,result,state,mx_uT,my_uT,mz_uT` (solo USB; separado de K4):
 
 - result: 0 Sample, 1 NotReady, 2 Overflow, 3 IoError, 4 Offline.
 - state: 0 Disabled, 1 Uncalibrated, 2 Waiting, 3 Referenced, 4 Corrected, 5 Rejected.
@@ -123,3 +122,20 @@ calibración magnética ni temporización real sobre el bus compartido.
 
 Referencia: AKM AK09911 MS1526-E-01 (2014/7), secciones 6-8:
 https://www.ecsimple.com/files/b7/ak09911c.pdf
+
+## Calibración completa y corrección suave (actualización 24/11/2026)
+
+Son procesos distintos. La calibración completa admite hasta 60° de inclinación,
+pero exige quietud y 300 muestras válidas consecutivas. Aceleración admitida:
+0,80–1,20 g. Un intervalo superior a 50 ms reinicia la ventana.
+El giro crudo no puede superar 0,35 rad/s y cada muestra debe estar a menos
+de 0,05 rad/s del promedio de la ventana. Se conservan los umbrales de Mauro
+para tolerar el offset del sensor montado. No se agrega un límite de 0,08 rad/s
+respecto de cero ni del bias anterior, porque impediría calibrar offsets mayores.
+Esta tolerancia tiene una limitación: un giro constante puede confundirse con
+offset. El jugador debe dejar quieta la pelota durante la calibración completa;
+el promedio por sí solo no certifica quietud física.
+
+La corrección suave conserva la referencia inicial y actúa después de 2,5 segundos
+con giro de hasta 0,25 rad/s (14,3°/s) y campo estable. No incrementa
+`calibration_sequence`, no pausa el juego ni reemplaza la alineación física.

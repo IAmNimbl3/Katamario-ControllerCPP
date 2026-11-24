@@ -286,11 +286,11 @@ void loop() {
       else if (mode==Mode::Calibrating) {
         recordCalibrationDiagnostic(accel,gyro,elapsed);
         // Gravity cannot determine forward: require a known starting pose.
-        // A late loop or a vibration spike does not mean the ball moved: skip it.
-        const bool skipped=calibrationMagnitudeRejected(accel) || elapsed>ball::config::MAX_SAMPLE_GAP_US;
-        if (calibrationGyroRejected(gyro) || calibrationTiltRejected(accel)) {
+        // Never combine samples across an unobserved interval or a detected knock.
+        if (calibrationGyroRejected(gyro) || calibrationTiltRejected(accel) ||
+            calibrationMagnitudeRejected(accel) || elapsed>ball::config::MAX_SAMPLE_GAP_US) {
           calibrationCount=0; sum={}; accelSum={};
-        } else if (!skipped) {
+        } else {
           sum=sum+gyro;
           accelSum=accelSum+accel;
           if (++calibrationCount==ball::config::CALIBRATION_SAMPLES) {
@@ -344,7 +344,7 @@ void loop() {
                   static_cast<unsigned long>(calibrationSequence));
     transport.send(line,true);
   }
-  // Separate backwards-compatible diagnostic; K3 movement format is unchanged.
+  // Independent magnetic-correction event, separate from K4 movement telemetry.
   if (millis()-lastMagneticStateReport>=200) {
     lastMagneticStateReport=millis();
     char report[64];

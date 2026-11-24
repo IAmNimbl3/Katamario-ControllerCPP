@@ -13,7 +13,7 @@ inline BallOrientation::Settings settings() {
   result.enabled=ENABLED;
   result.fieldSmoothingSeconds=0.2f; // Measured stationary noise ~0.9 uT/axis.
   result.quietSecondsBeforeCorrection=2.5f;
-  result.maxGyroRadPerSecond=0.15f;
+  result.maxGyroRadPerSecond=0.25f; // ~14.3 deg/s: tolerate small movements of the mounted ball.
   result.stableFieldAngleRad=3.0f*pi/180.0f;
   result.stableRelativeFieldChange=0.05f;
   return result;
