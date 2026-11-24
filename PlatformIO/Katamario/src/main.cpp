@@ -90,12 +90,18 @@ bool calibrationMagnitudeRejected(ball::Vec accel) {
   const float n=accel.norm();
   return n<ball::config::CALIBRATION_MIN_ACCEL_G || n>ball::config::CALIBRATION_MAX_ACCEL_G;
 }
+// Movement is judged against the running mean, not against zero.
+bool calibrationGyroRejected(ball::Vec gyro) {
+  if (gyro.norm()>ball::config::CALIBRATION_MAX_GYRO_RAD_PER_SEC) return true;
+  if (calibrationCount==0) return false;
+  return (gyro-sum*(1.0f/calibrationCount)).norm()>ball::config::CALIBRATION_MAX_GYRO_DEVIATION_RAD_PER_SEC;
+}
 
 // Observes every calibration sample; emits USB-only summaries twice per second.
 // Off by default. No calibration thresholds or sensor settings are changed.
 void recordCalibrationDiagnostic(ball::Vec accel, ball::Vec gyro, uint32_t elapsed) {
   if (!calibrationDiagnostics) return;
-  const bool rejected[]={gyro.norm()>ball::config::CALIBRATION_MAX_GYRO_RAD_PER_SEC, calibrationTiltRejected(accel),
+  const bool rejected[]={calibrationGyroRejected(gyro), calibrationTiltRejected(accel),
     calibrationMagnitudeRejected(accel), accel.z<=0,
     elapsed>ball::config::MAX_SAMPLE_GAP_US};
   unsigned mask=0;
@@ -277,11 +283,11 @@ void loop() {
       else if (mode==Mode::Calibrating) {
         recordCalibrationDiagnostic(accel,gyro,elapsed);
         // Gravity cannot determine forward: require a known starting pose.
-        if (gyro.norm()>ball::config::CALIBRATION_MAX_GYRO_RAD_PER_SEC || calibrationTiltRejected(accel) ||
-            calibrationMagnitudeRejected(accel) ||
-            elapsed>ball::config::MAX_SAMPLE_GAP_US) {
+        // A late loop or a vibration spike does not mean the ball moved: skip it.
+        const bool skipped=calibrationMagnitudeRejected(accel) || elapsed>ball::config::MAX_SAMPLE_GAP_US;
+        if (calibrationGyroRejected(gyro) || calibrationTiltRejected(accel)) {
           calibrationCount=0; sum={}; accelSum={};
-        } else {
+        } else if (!skipped) {
           sum=sum+gyro;
           accelSum=accelSum+accel;
           if (++calibrationCount==ball::config::CALIBRATION_SAMPLES) {
@@ -290,6 +296,12 @@ void loop() {
             // remains the player's physical alignment; gravity cannot infer it.
             const auto up=accelSum*(1.0f/accelSum.norm());
             motion.orientation=ball::Quat(1+up.z,up.y,-up.x,0);
+            motion.orientation.normalize();
+            // On a diagonal tilt that rotation skews heading (~19 deg at 60): yaw it
+            // back so the sensor's forward axis keeps the azimuth the player set.
+            const auto forward=motion.orientation.rotate({0,1,0});
+            const float yaw=std::atan2(forward.x,forward.y);
+            motion.orientation=ball::Quat(std::cos(yaw/2),0,0,std::sin(yaw/2))*motion.orientation;
             motion.orientation.normalize(); mode=Mode::Ready;
             transport.send("# READY: calibracion terminada\n");
           }

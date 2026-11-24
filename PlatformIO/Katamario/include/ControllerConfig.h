@@ -4,10 +4,17 @@
 namespace ball {
 namespace config {
 // Starting pose tolerates placement tilt; still requires three quiet seconds.
-constexpr float CALIBRATION_MAX_TILT_DEG = 25.0f;
-constexpr float CALIBRATION_MIN_ACCEL_G = 0.85f;
-constexpr float CALIBRATION_MAX_ACCEL_G = 1.15f;
-constexpr float CALIBRATION_MAX_GYRO_RAD_PER_SEC = 0.08f;
+// The mounted ball rests wherever its weight settles it; only near upside down
+// is the gravity-to-up rotation ill-defined.
+constexpr float CALIBRATION_MAX_TILT_DEG = 60.0f;
+// Out-of-range samples (knocks, floor vibration) are skipped, not restarted.
+constexpr float CALIBRATION_MIN_ACCEL_G = 0.80f;
+constexpr float CALIBRATION_MAX_ACCEL_G = 1.20f;
+// Raw gyro ceiling: the MPU6050 zero-rate offset alone may reach 20 deg/s, and it
+// drifts as the sealed ball warms up. That offset is what calibration measures.
+constexpr float CALIBRATION_MAX_GYRO_RAD_PER_SEC = 0.35f;
+// Stillness: each sample against the mean gathered so far (~2.9 deg/s).
+constexpr float CALIBRATION_MAX_GYRO_DEVIATION_RAD_PER_SEC = 0.05f;
 constexpr uint16_t CALIBRATION_SAMPLES = 300;
 // First bench tuning for interaction: vertical twist in either direction.
 constexpr float TWIST_TRIGGER_RAD_PER_SEC = 1.5f;
